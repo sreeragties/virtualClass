@@ -1,10 +1,16 @@
 {% extends 'index.html'%}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1> Login </h1>
+    <h3> Login </h3>
     <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+            {{form.as_p}}
         <button>Login</button>
-    </form>    
+    </form>
 {% endblock %}

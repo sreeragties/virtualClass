@@ -1,4 +1,10 @@
 {% extends 'index.html'%}
+{% load static %}
+
+{% block title %} Register {% endblock %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+{% endblock %}
 
 {% block content %}
     <h1> Create Account </h1>
