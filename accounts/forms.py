@@ -18,5 +18,5 @@ class SignUpForm(UserCreationForm):
 class ClassesForm(ModelForm):
     class Meta:
         model = Classes
-        fields = ('classes','teacher','subject',)
-        labels = {'classes':'Class Name','teacher': 'Teacher Name'}
+        fields = ('classes','code','teacher','subject')
+        labels = {'classes':'Class Name','teacher': 'Teacher Name','code':'Class Code'}
