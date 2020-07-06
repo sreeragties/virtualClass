@@ -10,8 +10,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-4 "    align="center">
-    <div class="col-md-4">
+    <div class="container mt-4 container-sm "    align="center">
+    
     <form class="border mt-5 border-secondary text-center p-3 bg-light" method="POST">
         {% csrf_token %}
         <p class="h4 mb-4 text-secondary text-center ">Sign up</p>
@@ -32,7 +32,7 @@
 		    {% endfor %}
         <button class="btn btn-secondary" >Register</button>
     </form><br><br>
-    </div>
+    
     </div>
     
 {% endblock %}

@@ -28,3 +28,7 @@ nav{
 .nav-item:hover{
     border: 2px solid white;
 }
+@media (min-width: 400px) {
+    .container {
+      width: 400px;
+    }
