@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm
+from .forms import SignUpForm,ClassesForm
 
 
 # Create your views here.
@@ -26,7 +26,14 @@ def registerView(request):
 
 
 def createClass(request):
-    return render(request,'classes/create.html')
+    if request.method == "POST":
+        form = ClassesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = ClassesForm()
+    return render(request,'classes/create.html',{'form': form})
 
 
 def joinClass(request):

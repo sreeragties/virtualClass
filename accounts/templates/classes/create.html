@@ -1,1 +1,39 @@
-<h1>Create Class</h1>
+{% extends 'index.html'%}
+{% load static %}
+
+{% block title %} Register {% endblock %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+{% endblock %}
+
+{% block nav_content%}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4 "    align="center">
+    <div class="col-md-4">
+    <form class="border mt-5 border-secondary text-center p-3 bg-light" method="POST">
+        {% csrf_token %}
+        <p class="h4 mb-4 text-secondary text-center ">Create Class</p>
+        {% for field in form %}
+
+		    <p>
+	        	{{ field.label_tag }}
+                <br>
+	        	{{ field }}
+
+		        <!-- {% if field.help_text %}
+		          <small style="color: grey">{{ field.help_text }}</small>
+		        {% endif %} -->
+		        {% for error in field.errors %}
+		          <p style="color: white">{{ error }}</p>
+		        {% endfor %}
+		    </p>
+		    {% endfor %}
+        <button class="btn btn-secondary" >Create</button>
+    </form><br><br>
+    </div>
+    </div>
+
+{% endblock %}
+
