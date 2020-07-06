@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\accounts",
+    "\\accounts\\migrations",
+    "\\accounts\\static",
+    "\\accounts\\templates",
+    "\\accounts\\templates\\registration",
+    "\\env",
+    "\\mysite",
+    "\\virtualClass"
+  ],
+  "SelectedNode": "\\accounts\\views.py",
+  "PreviewInSolutionExplorer": false
+}
