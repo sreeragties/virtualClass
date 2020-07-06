@@ -23,3 +23,11 @@ def registerView(request):
     else:
         form=SignUpForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def createClass(request):
+    return render(request,'classes/create.html')
+
+
+def joinClass(request):
+    return render(request,'classes/join.html')
