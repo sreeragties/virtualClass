@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm,ClassesForm
+from django.utils.crypto import get_random_string
+from .models import Classes
 
 
 # Create your views here.
@@ -29,7 +31,12 @@ def createClass(request):
     if request.method == "POST":
         form = ClassesForm(request.POST)
         if form.is_valid():
-            form.save()
+            classes = form.cleaned_data['classes']
+            teacher = form.cleaned_data['teacher']
+            subject = form.cleaned_data['subject']
+            code = get_random_string(length=5)
+            p = Classes(classes=classes, teacher=teacher, subject=subject, code=code)
+            p.save()
             return redirect('dashboard')
     else:
         form = ClassesForm()
