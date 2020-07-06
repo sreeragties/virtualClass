@@ -9,7 +9,7 @@
 {% block content %}
      <div class="container mt-4"  align="center">
     <div class="col-md-4">
-    <form class="border mt-5 border-secondary text-center p-3" method="POST">
+    <form class="border mt-5 border-secondary text-center p-3 bg-light" method="POST">
         {% csrf_token %}
         <p class="h4 mb-4 text-secondary text-center">Login</p>
         {% for field in form %}
