@@ -14,7 +14,7 @@ def indexView(request):
 
 @login_required
 def dashboardView(request):
-    all_objects= Classes.objects.all()
+    all_objects= Classes.objects.filter(user_id=request.user)
     
     context= {'all_objects': all_objects}
     return render(request, 'dashboard.html', context)
