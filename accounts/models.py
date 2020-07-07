@@ -19,3 +19,6 @@ class Classes(models.Model):
 class Join(models.Model):
     class_code = models.ForeignKey(Classes, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('class_code', 'user_id',)
