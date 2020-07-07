@@ -1,1 +1,31 @@
-<h1>Join Class</h1>
+{% extends 'index.html'%}
+{% load static %}
+
+{% block title %} Join Class {% endblock %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+{% endblock %}
+
+{% block nav_content%}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4 "    align="center">
+
+    <form class="border mt-5 border-secondary text-center p-3 bg-light" method="POST">
+        {% csrf_token %}
+        <p class="h4 mb-4 text-secondary text-center ">Join Class</p>
+        <p class="h6 mb-4 text-secondary text-left">Ask your teacher for the class code, then enter it here.</p>
+        <p><input type="text" placeholder="Class Code" name="code"></p>
+        <div>
+            {% for message in messages %}
+                <p style="color: red">{{ message }}</p>
+            {% endfor %}
+        </div>
+        <button class="btn btn-secondary" >Join</button>
+    </form><br><br>
+
+    </div>
+
+{% endblock %}
+

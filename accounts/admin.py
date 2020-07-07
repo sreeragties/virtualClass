@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Classes
+from .models import Classes,Join
 
 # Register your models here.
-admin.site.register(Classes)
+myModels = [Classes,Join]
+admin.site.register(myModels)

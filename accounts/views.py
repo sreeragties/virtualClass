@@ -3,8 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm,ClassesForm
 from django.utils.crypto import get_random_string
-from .models import Classes
-
+from .models import Classes,Join
+from django.contrib import messages
 
 
 # Create your views here.
@@ -39,7 +39,7 @@ def createClass(request):
             teacher = form.cleaned_data['teacher']
             subject = form.cleaned_data['subject']
             code = get_random_string(length=5)
-            p = Classes(classes=classes, teacher=teacher, subject=subject, code=code)
+            p = Classes(classes=classes, teacher=teacher, subject=subject, code=code , user_id=request.user)
             p.save()
             return redirect('dashboard')
     else:
@@ -48,6 +48,16 @@ def createClass(request):
 
 
 def joinClass(request):
-    
-    return render(request,'classes/join.html')
+    if request.method == "POST":
+        code_name = request.POST['code']
+        if Classes.objects.filter(code=code_name).exists():
+            code = Classes.objects.get(code=code_name)
+            p=Join(class_code=code,user_id=request.user)
+            p.save()
+            return redirect('dashboard')
+        else:
+            messages.success(request,'Class Do Not Exist')
+            return redirect('join_class')
+    else:
+        return render(request,'classes/join.html')
 
