@@ -3,16 +3,16 @@
 
 {% block title %} Register {% endblock %}
 {% block link %}
-        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
 {% endblock %}
 
 
 {% block content %}
     <div class="container mt-4 container-sm "    align="center">
     
-    <form class="border mt-5 border-secondary text-center p-3 bg-light" method="POST">
+    <form method="POST">
         {% csrf_token %}
-        <p class="h4 mb-4 text-secondary text-center ">Sign up</p>
+        <p id="title" class="h4 mb-4 text-secondary text-center ">Sign up</p>
         {% for field in form %}
             
 		    <p>
@@ -28,7 +28,7 @@
 		        {% endfor %}
 		    </p>
 		    {% endfor %}
-        <button class="btn btn-secondary" >Register</button>
+        <button id="pagebutton" >Register</button>
     </form><br><br>
     
     </div>

@@ -47,7 +47,7 @@ nav{
         font-size: 16px;
         border-radius: 10px;
         padding: 16px;
-        background-color:#EBECF0;
+        background-color: #EBECF0;
         text-shadow: 1px 1px 0 #FFF;
 }
 #pagebutton {
@@ -69,12 +69,10 @@ nav{
 
 input {
   margin-right: 16px/2;
-  box-shadow:  inset 2px 2px 7px #BABECC, inset -5px -5px 10px #FFF;
+  box-shadow:  inset 1px 1px 5px #BABECC, inset -5px -5px 10px #FFF;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
-  appearance: none;
-  -webkit-appearance: none;
 }
       
 input:focus {
