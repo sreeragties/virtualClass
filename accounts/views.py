@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm,ClassesForm
 from django.utils.crypto import get_random_string
 from .models import Classes,Join
+from django.contrib.auth.models import User
 from django.contrib import messages
 
 
@@ -66,5 +67,7 @@ def joinClass(request):
 
 @login_required
 def classView(request,class_code):
-    return render(request, 'individual/class.html')
+    ids = Join.objects.filter(class_code=class_code).values_list('user_id',flat=True)
+    students = User.objects.filter(id__in=ids)
+    return render(request, 'individual/class.html',{'students':students})
 
