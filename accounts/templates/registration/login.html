@@ -8,26 +8,29 @@
 
 
 {% block content %}
+    <script>
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
      <div class="container mt-4"  align="center">
 	 
     <form method="POST">
         {% csrf_token %}
         <p id="title" class="h4 mb-4 text-secondary text-center">Login</p>
-        {% for field in form %}
-            
-		    <p>
-	        	{{ field.label_tag }}
-                <br>
-	        	{{ field }}
-                
-		        <!-- {% if field.help_text %}
-		          <small style="color: grey">{{ field.help_text }}</small>
-		        {% endif %} -->
-		        {% for error in field.errors %}
-		          <p style="color: red">{{ error }}</p>
-		        {% endfor %}
-		    </p>
-		    {% endfor %}
+
+        <p><input type="text" name="username" autofocus="" required="" id="id_username" placeholder="username"></p>
+
+        <p><input type="password" name="password" required="" id="id_password" placeholder="password"></p>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+
         <button id="pagebutton" >Sign in</button>
     </form>    </div>
 {% endblock %}
