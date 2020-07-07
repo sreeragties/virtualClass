@@ -19,7 +19,7 @@ def dashboardView(request):
     context= {'all_objects': all_objects}
     return render(request, 'dashboard.html', context)
 
-
+@login_required
 def registerView(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -30,7 +30,7 @@ def registerView(request):
         form=SignUpForm()
     return render(request, 'registration/register.html', {'form': form})
 
-
+@login_required
 def createClass(request):
     if request.method == "POST":
         form = ClassesForm(request.POST)
@@ -46,7 +46,7 @@ def createClass(request):
         form = ClassesForm()
     return render(request,'classes/create.html',{'form': form})
 
-
+@login_required
 def joinClass(request):
     if request.method == "POST":
         try:
