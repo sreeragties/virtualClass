@@ -4,7 +4,7 @@ body{
 }
 
 nav{
-    background-color: rgb(105, 97, 156);
+    background-color: #7A87C2;
     min-height: 80px;
     box-shadow: 0px 0px 5px #000;
 }
@@ -26,7 +26,6 @@ nav{
     font-size: .8em;
     text-transform: uppercase;
     border: 2px solid transparent;
-    border-radius: 10px;
 }
 
 

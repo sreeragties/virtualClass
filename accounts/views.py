@@ -19,7 +19,6 @@ def dashboardView(request):
     context= {'all_objects': all_objects}
     return render(request, 'dashboard.html', context)
 
-@login_required
 def registerView(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)

@@ -9,11 +9,9 @@ body{
 
 nav{
     background-color: transparent;
-    min-height: 80px;
-}
-
-.navbar-brand{
-    margin-left: 20px;
+    min-height: 100px;
+    margin-left: 40px;
+    margin-right: 20px;
 }
 
 .nav-item{
