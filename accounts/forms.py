@@ -22,6 +22,6 @@ class SignUpForm(UserCreationForm):
         labels = {'classes':'Class Name','teacher': 'Teacher Name','code':'Class Code'}'''
 
 class ClassesForm(forms.Form):
-    classes = forms.CharField(max_length=30)
-    teacher = forms.CharField(max_length=30)
-    subject = forms.CharField(max_length=30)
+    classes = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Class name'}))
+    teacher = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Teacher\'s name'}))
+    subject = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Subject'}))

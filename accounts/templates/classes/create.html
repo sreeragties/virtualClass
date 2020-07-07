@@ -3,32 +3,23 @@
 
 {% block title %} Register {% endblock %}
 {% block link %}
-        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
 {% endblock %}
 
 
 {% block content %}
     <div class="container mt-4 "    align="center">
-    
-    <form class="border mt-5 border-secondary text-center p-3 bg-light" method="POST">
+    <form method="POST">
+        <br>
         {% csrf_token %}
-        <p class="h4 mb-4 text-secondary text-center ">Create Class</p>
+        <p id="title" class="h3 mb-4 text-secondary text-center ">Create Class</p>
         {% for field in form %}
-
-		    <p>
-	        	{{ field.label_tag }}
-                <br>
-	        	{{ field }}
-
-		        <!-- {% if field.help_text %}
-		          <small style="color: grey">{{ field.help_text }}</small>
-		        {% endif %} -->
+	        	{{ field }} <br><br>
 		        {% for error in field.errors %}
 		          <p style="color: red">{{ error }}</p>
 		        {% endfor %}
-		    </p>
 		    {% endfor %}
-        <button class="btn btn-secondary" >Create</button>
+        <button id="pagebutton" >Create</button>
     </form><br><br>
     
     </div>
