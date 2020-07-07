@@ -28,6 +28,9 @@
                       <div class="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul class="navbar-nav ml-auto">
                           <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#exampleModal"">Get Started</a>
+                          </li>
+                          <li class="nav-item">
                             <a class="nav-link" href="{%url 'login_url' %}">Login</a>
                           </li>
                           <li class="nav-item">
@@ -40,6 +43,52 @@
 
         </nav>
     {% block content %}
+    <script>
+    $(window).load(function(){
+    $('#exampleModal').modal('show');
+});
+iframe {
+    display:block;
+    width:100%;
+}
+    </script>
+    
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width: 25rem; height: 32rem;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <div class="container mt-4"  align="center">
+	 
+    <form method="POST">
+        {% csrf_token %}
+        <p id="title" class="h4 mb-4 text-secondary text-center">Login</p>
+
+        <p><input type="text" name="username" autofocus="" required="" id="id_username" placeholder="username"></p>
+
+        <p><input type="password" name="password" required="" id="id_password" placeholder="password"></p>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+
+        <button id="pagebutton" >Sign in</button>
+    </form>    </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
     {% endblock %}
     </body>
