@@ -11,4 +11,5 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(next_page='home'),name="logout"),
     path('create_class/',views.createClass,name="create_class"),
     path('join_class/',views.joinClass,name="join_class"),
+    path('class_page/<str:class_code>/',views.classView,name="class_page"),
 ]

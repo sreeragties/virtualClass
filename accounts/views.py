@@ -64,3 +64,7 @@ def joinClass(request):
     else:
         return render(request,'classes/join.html')
 
+@login_required
+def classView(request,class_code):
+    return render(request, 'individual/class.html')
+
