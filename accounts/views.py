@@ -6,6 +6,7 @@ from django.utils.crypto import get_random_string
 from .models import Classes
 
 
+
 # Create your views here.
 def indexView(request):
     return render(request, 'index.html')
@@ -13,7 +14,10 @@ def indexView(request):
 
 @login_required
 def dashboardView(request):
-    return render(request, 'dashboard.html')
+    all_objects= Classes.objects.all()
+    
+    context= {'all_objects': all_objects}
+    return render(request, 'dashboard.html', context)
 
 
 def registerView(request):
@@ -44,4 +48,6 @@ def createClass(request):
 
 
 def joinClass(request):
+    
     return render(request,'classes/join.html')
+

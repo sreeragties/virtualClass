@@ -25,4 +25,22 @@
 
 {% block content%}
     <h1> Welcome, {{user.username}}</h1>
+
+    <table border="1" width="600">
+<tr>
+<td>Class</td>
+<td>Teacher</td>
+
+</tr>
+
+{% for video in all_objects %}
+<tr>
+<td>{{ video.classes }}</td>
+<td>
+{{ video.teacher }}</td>
+
+</tr>
+{% endfor %}
+</table>
 {% endblock %} 
+
