@@ -9,8 +9,14 @@
 
 {% block nav_content%}
 <a class="navbar-brand" href="{%url 'home' %}">virtual <b>CLASS</b></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+</button>
 <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'dashboard' %}">Home</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{%url 'create_class' %}">Create Class</a>
         </li>
@@ -29,9 +35,9 @@
 </div>
 {% endblock %}
 
-    {% block content%}
+{% block content%}
     <p></p>
-
+    <p class="h4 mb-4 text-secondary text-center"> Created Class</p>
     <div class="card-deck" >
         {% for class in all_objects %}
         <div class="col-auto mb-3">

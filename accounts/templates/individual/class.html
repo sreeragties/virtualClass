@@ -3,12 +3,15 @@
 
 {% block title %} {{ classname.classes }} {% endblock %}
 {% block link %}
-        <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 {% endblock %}
 
 {% block nav_content%}
-<a class="navbar-brand" href="#"><b>{{ classname.classes }}</b></a>
-<div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <a class="navbar-brand mr-auto" href="#"><b>{{ classname.classes }}</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" href="{%url 'dashboard' %}">Home</a>
@@ -25,13 +28,29 @@
 </div>
 {% endblock %}
 
-
-
 {% block content%}
-<h6>Class Code: {{ classname.code }}</h6>
-<ul>
-    {% for student in students %}
-        <li>{{student.username}}</li>
-    {% endfor %}
-    {% endblock %}
-</ul>
+<div class="container-fluid text-center mt-3 justify-content-center">
+    <div class="row">
+        <div class="column">
+            <div class="container">
+                <ul class="list-group text-center list-group-flush" style="width:16rem;">
+                    <li class="list-group-item h6 disabled">STUDENTS</li>
+                {% for student in students %}
+                    <li class="list-group-item">{{student.username}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="column ml-auto pr-2">
+            <div class="card bg-light" style="width:12rem;">
+                <div class="card-header h6">CLASS CODE</div>
+                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
+                <div class="card-header h6">TEACHER</div>
+                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.teacher }}</div>
+                <div class="card-header h6">SUBJECT</div>
+                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.subject }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
