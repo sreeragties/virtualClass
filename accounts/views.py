@@ -55,9 +55,13 @@ def joinClass(request):
             code_name = request.POST['code']
             if Classes.objects.filter(code=code_name).exists():
                 code = Classes.objects.get(code=code_name)
-                p=Join(class_code=code,user_id=request.user)
-                p.save()
-                return redirect('dashboard')
+                if code.user_id==request.user:
+                    messages.success(request, 'You Cannot Join The Class You Created')
+                    return redirect('join_class')
+                else:
+                    p=Join(class_code=code,user_id=request.user)
+                    p.save()
+                    return redirect('dashboard')
             else:
                 messages.success(request,'Class Do Not Exist')
                 return redirect('join_class')
