@@ -1,6 +1,22 @@
+{% extends 'dashboard.html'%}
+{% load static %}
+
+{% block title %} Register {% endblock %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
+{% endblock %}
+
+{% block nav_content %}
+{% endblock %}
+
+
+{% block content %}
+
 <h1>Class Landing Page</h1>
 <ul>
-    {% for student in students %}
-        <li>{{student.username}}</li>
-    {% endfor %}
+{% for student in students %}
+    <li>{{student.username}}</li>
+{% endfor %}
 </ul>
+{% endblock %}
+
