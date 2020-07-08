@@ -8,6 +8,7 @@
 
 
 {% block content %}
+
     <div class="container mt-4 "    align="center">
     <form method="POST">
         <br>
@@ -17,7 +18,9 @@
         <p><input type="text" placeholder="Class Code" name="code"></p>
         <div>
             {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
                 <p style="color: red">{{ message }}</p>
+            </div>
             {% endfor %}
         </div>
         <button id="pagebutton" >Join</button>
