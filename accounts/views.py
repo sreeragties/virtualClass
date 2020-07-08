@@ -67,7 +67,8 @@ def joinClass(request):
 
 @login_required
 def classView(request,class_code):
+    classname = Classes.objects.get(code=class_code)
     ids = Join.objects.filter(class_code=class_code).values_list('user_id',flat=True)
     students = User.objects.filter(id__in=ids)
-    return render(request, 'individual/class.html',{'students':students})
+    return render(request, 'individual/class.html',{'students':students, 'classname':classname})
 

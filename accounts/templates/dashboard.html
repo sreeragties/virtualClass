@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block nav_content%}
+<a class="navbar-brand" href="{%url 'home' %}">virtual <b>CLASS</b></a>
 <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -28,8 +29,9 @@
 </div>
 {% endblock %}
 
-{% block content%}
+    {% block content%}
     <p></p>
+
     <div class="card-deck" >
         {% for class in all_objects %}
         <div class="col-auto mb-3">
