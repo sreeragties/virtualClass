@@ -16,8 +16,10 @@ def indexView(request):
 @login_required
 def dashboardView(request):
     all_objects= Classes.objects.filter(user_id=request.user)
+    classes= Join.objects.filter(user_id=request.user).values_list('class_code',flat=True)
+    all_classes=Classes.objects.filter(code__in=classes)
     
-    context= {'all_objects': all_objects}
+    context= {'all_objects': all_objects,'all_classes':all_classes}
     return render(request, 'dashboard.html', context)
 
 def registerView(request):
