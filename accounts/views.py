@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm,ClassesForm
+from .forms import SignUpForm,ClassesForm,NotesForm
 from django.utils.crypto import get_random_string
-from .models import Classes,Join
+from .models import Classes,Join,Notes
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -76,5 +76,22 @@ def classView(request,class_code):
     classname = Classes.objects.get(code=class_code)
     ids = Join.objects.filter(class_code=class_code).values_list('user_id',flat=True)
     students = User.objects.filter(id__in=ids)
-    return render(request, 'individual/class.html',{'students':students, 'classname':classname})
+    notes = Notes.objects.filter(class_code=class_code)
+    return render(request, 'individual/class.html',{'students':students, 'classname':classname, 'notes':notes})
+
+@login_required
+def noteUpload(request,class_code):
+    if request.method == "POST":
+        form = NotesForm(request.POST,request.FILES)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            desc = form.cleaned_data['desc']
+            file = request.FILES['file']
+            classname = Classes.objects.get(code=class_code)
+            p = Notes(class_code=classname, title = title, desc = desc, file = file)
+            p.save()
+            return redirect('class_page',class_code=class_code)
+    else:
+        form = NotesForm()
+    return render(request,'notes/notes.html',{'form':form})
 

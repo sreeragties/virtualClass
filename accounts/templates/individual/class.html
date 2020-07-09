@@ -41,6 +41,9 @@
                 </ul>
             </div>
         </div>
+        <div class="col-4 align-center mt-5">
+            <a href="{%url 'upload_note' classname.code %}" role="button" class="btn btn-primary">Upload Notes</a>
+        </div>
         <div class="column ml-auto pr-2">
             <div class="card bg-light" style="width:12rem;">
                 <div class="card-header h6">CLASS CODE</div>
@@ -53,4 +56,19 @@
         </div>
     </div>
 </div>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>File</th>
+        </tr>
+        <tr>
+            {% for note in notes %}
+                 <td>{{note.title}}</td>
+                 <td>{{note.desc}}</td>
+                 <td><a href="{{note.file.url}}">{{note.file}}</a></td>
+            {% endfor %}
+        </tr>
+    </table>
 {% endblock %}
