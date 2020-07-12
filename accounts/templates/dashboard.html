@@ -39,13 +39,9 @@
     <script>
     $(document).ready(function(){
         $(".card-deck:empty").closest('.classlist').hide();
-        var empty = 0;
         if ($('#cdeck').is(':empty') && $('#jdeck').is(':empty')) {
-                empty = 1;
+                $(".noclass").show();
             }
-        if (empty == 1){
-            $(".noclass").show();
-        }
     });
     </script>
     <p></p>
