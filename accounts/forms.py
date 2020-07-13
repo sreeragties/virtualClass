@@ -27,6 +27,6 @@ class ClassesForm(forms.Form):
     subject = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Subject'}))
 
 class NotesForm(forms.Form):
-    title = forms.CharField(max_length=30, label='Title')
+    title = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Title','class':'uploadinput'}))
     file = forms.FileField(label='Upload File',required=False)
-    desc = forms.CharField(label='Description',widget=forms.Textarea)
+    desc = forms.CharField(widget=forms.Textarea(attrs={'placeholder':'Description','class':'uploadinput'}))

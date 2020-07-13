@@ -1,21 +1,13 @@
-
-<form method="POST" enctype="multipart/form-data">
+<div class="modal-body">
+    <p id="title" class="h4 mt-3 mb-4 text-secondary text-center">Post</p>
+    <form method="POST" enctype="multipart/form-data" action="{%url 'upload_note' classname.code %}">
         {% csrf_token %}
-        <p>Note Upload</p>
         {% for field in form %}
-
-		    <p>
-	        	{{ field.label_tag }}
-                <br>
-	        	{{ field }}
-
-		        <!-- {% if field.help_text %}
-		          <small style="color: grey">{{ field.help_text }}</small>
-		        {% endif %} -->
-		        {% for error in field.errors %}
-		          <p style="color: red">{{ error }}</p>
-		        {% endfor %}
-		    </p>
-		    {% endfor %}
-        <button id="pagebutton" >Register</button>
+            {{ field }}<br><br>
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        <button id="pagebutton" type="submit">Post</button>
     </form>
+</div>

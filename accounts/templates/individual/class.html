@@ -4,10 +4,11 @@
 {% block title %} {{ classname.classes }} {% endblock %}
 {% block link %}
         <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'upload.css' %}">
 {% endblock %}
 
 {% block nav_content%}
-    <a class="navbar-brand mr-auto" href="#"><b>{{ classname.classes }}</b></a>
+    <a class="navbar-brand mr-auto" href="{%url 'class_page' classname.code %}"><b>{{ classname.classes }}</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,4 +74,16 @@
 
     </div>
 </div>
+<div id="theModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+  <script>
+    $('#upload').on('click', function(e){
+      e.preventDefault();
+      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
+    });
+  </script>
 {% endblock %}

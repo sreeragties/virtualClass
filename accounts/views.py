@@ -81,6 +81,7 @@ def classView(request,class_code):
 
 @login_required
 def noteUpload(request,class_code):
+    classname = Classes.objects.get(code=class_code)
     if request.method == "POST":
         form = NotesForm(request.POST,request.FILES)
         if form.is_valid():
@@ -93,5 +94,5 @@ def noteUpload(request,class_code):
             return redirect('class_page',class_code=class_code)
     else:
         form = NotesForm()
-    return render(request,'notes/notes.html',{'form':form})
+    return render(request,'notes/notes.html',{'form':form, 'classname':classname})
 
