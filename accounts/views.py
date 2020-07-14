@@ -104,3 +104,8 @@ def noteUpload(request,class_code):
         form = NotesForm()
     return render(request,'notes/notes.html',{'form':form, 'classname':classname})
 
+@login_required
+def noteDelete(request,class_code,note_id):
+    Notes.objects.get(pk=note_id).delete()
+    return redirect('class_page',class_code=class_code)
+
