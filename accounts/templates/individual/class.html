@@ -48,7 +48,7 @@
                             <p class="card-text text-muted ml-5">{{note.desc}}</p>
                             {% if note.file %}
                             <h6 class="card-title">FILE</h6>
-                           <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
+                           <p class="card-text ml-5"><a href="{{note.file.url}}" target="_blank">{{note.file}}</a></p>
                             {% endif %}
                             <a href="{%url 'delete_note' classname.code note.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_note">Delete</a>
                        </div>
@@ -86,7 +86,7 @@
                 <li class="list-group-item" >{{student.username}}</li>
                 {% endfor %}
             </div>
-            <li class="btn btn-danger btn-sm" role="button" id="class_del"><b>Delete Class</b></li>
+            <li><a class="btn btn-danger btn-sm" href="{%url 'delete_class' classname.code %}" role="button" id="class_del"><b>Delete Class</b></a></li>
         </ul>
     </div>
 </div>

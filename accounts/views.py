@@ -109,3 +109,12 @@ def noteDelete(request,class_code,note_id):
     Notes.objects.get(pk=note_id).delete()
     return redirect('class_page',class_code=class_code)
 
+@login_required
+def classDelete(request,class_code):
+    Classes.objects.get(pk=class_code).delete()
+    return redirect('dashboard')
+
+@login_required
+def classUnenroll(request,class_code):
+    Join.objects.get(class_code_id=class_code,user_id=request.user).delete()
+    return redirect('dashboard')

@@ -48,7 +48,7 @@
                             <p class="card-text text-muted ml-5">{{note.desc}}</p>
                             {% if note.file %}
                             <h6 class="card-title">FILE</h6>
-                            <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
+                            <p class="card-text ml-5"><a href="{{note.file.url}}" target="_blank">{{note.file}}</a></p>
                             {% endif %}
                        </div>
                     </div>
@@ -78,7 +78,7 @@
                 <li class="list-group-item" >{{student.username}}</li>
                 {% endfor %}
             </div>
-            <li class="btn btn-info btn-sm" role="button" id="class_del">Unenroll from class</li>
+            <li><a class="btn btn-info btn-sm" href="{%url 'unenroll_class' classname.code %}" role="button" id="class_del">Unenroll from class</a></li>
         </ul>
     </div>
 </div>
