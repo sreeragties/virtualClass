@@ -9,7 +9,8 @@
 
 {% block nav_content%}
     <nav class="navbar navbar-expand-md navbar-dark sticky-top">
-        <a class="navbar-brand mr-auto" href="{%url 'class_page' classname.code %}"><b>{{ classname.classes }}</b></a>
+        <button id="openSideNav" data-toggle="collapse" href="#sideNav" >&#9776;</button>
+        <a class="navbar-brand mr-auto" href="{%url 'class_page' classname.code %}" style="margin-left: 10px;"><b>{{ classname.classes }}</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,60 +33,71 @@
 {% endblock %}
 
 {% block content%}
-<div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-2 px-0" id="list">
-            <ul class="list-group list-group-flush bg-light " style="font-size:.9rem; overflow-x: auto;">
-                <li class="list-group-item" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
-                <div id="demo" class="collapse">
-                    {% for student in students %}
-                    <li class="list-group-item" >{{student.username}}</li>
-                    {% endfor %}
-                </div>
+<main id="main">
+    <div class="container-fluid mt-3">
+        <div class="row">
 
-            </ul>
-        </div>
-
-        <div class="col-6 px-0 ml-auto mr-auto">
-            {% for note in notes %}
-                    <div class="card mb-2 bg-light">
-                       <div class="card-header">
-                            <h6 class="card-title">{{note.title}}</h6>
-                       </div>
-                        <div class="card-body">
-                            <h6 class="card-title">DESCRIPTION</h6>
-                            <p class="card-text text-muted ml-5">{{note.desc}}</p>
-                            <h6 class="card-title">FILE</h6>
-                           <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
-                       </div>
-                    </div>
-            {% endfor %}
-        </div>
-
-        <div class="col-3 px-0 mr-1 text-center">
-            <a href="{%url 'upload_note' classname.code %}" role="button" class="btn btn-primary" id="upload">+</a>
-            <div class="card bg-light">
-                <div class="card-header h6">CLASS CODE</div>
-                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
-                <div class="card-header border-top h6">TEACHER</div>
-                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.teacher }}</div>
-                <div class="card-header border-top h6">SUBJECT</div>
-                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.subject }}</div>
+            <div class="col-7 px-0 ml-auto mr-auto">
+                {% for note in notes %}
+                        <div class="card mb-2 bg-light">
+                        <div class="card-header">
+                                <h6 class="card-title">{{note.title}}</h6>
+                        </div>
+                            <div class="card-body">
+                                <h6 class="card-title">DESCRIPTION</h6>
+                                <p class="card-text text-muted ml-5">{{note.desc}}</p>
+                                <h6 class="card-title">FILE</h6>
+                            <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
+                        </div>
+                        </div>
+                {% endfor %}
             </div>
-        </div>
 
+            <div class="col-3 px-0 mr-1 text-center">
+                <a href="{%url 'upload_note' classname.code %}" role="button" class="btn btn-primary" id="upload" style="z-index:1;">+</a>
+                <div class="card bg-light">
+                    <div class="card-header h6">CLASS CODE</div>
+                    <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
+                    <div class="card-header border-top h6">TEACHER</div>
+                    <div class="card-text mb-4 mt-1 text-secondary">{{ classname.teacher }}</div>
+                    <div class="card-header border-top h6">SUBJECT</div>
+                    <div class="card-text mb-4 mt-1 text-secondary">{{ classname.subject }}</div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+</main>    
 <div id="theModal" class="modal fade">
     <div class="modal-dialog">
-      <div class="modal-content">
-      </div>
+      <div class="modal-content"></div>
     </div>
-  </div>
+</div>
+
+<div class="container" >
+    <div class="collapse width" id="sideNav" style="background-color:white; height:100vh;">
+        <br>
+        <ul class="list-group list-group-flush bg-transparent " style="font-size:.9rem; overflow-x: auto;">
+            <li class="list-group-item" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
+            <div id="demo" class="collapse">
+                {% for student in students %}
+                <li class="list-group-item" >{{student.username}}</li>
+                {% endfor %}
+            </div>
+        </ul>
+    </div>
+</div>
+
   <script>
     $('#upload').on('click', function(e){
       e.preventDefault();
       $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
     });
+    $(document).click(function(e) {
+	if ($(e.target).closest(".container").length === 0) {
+    	$('.collapse').collapse('hide');
+    }
+});
+
   </script>
 {% endblock %}

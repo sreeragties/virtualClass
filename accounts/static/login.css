@@ -27,25 +27,6 @@ nav{
     border: 2px solid transparent;
 }
 
-
 .nav-item:hover{
     border: 2px solid white;
-}
-@media (min-width: 400px) {
-    .container {
-      width: 400px;
-    }
-
-#upload{
-    font-size:30px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    height:65px;
-    width:65px;
-    border-radius:100px;
-}
-
-.list-group-item{
- background-color: transparent;
 }

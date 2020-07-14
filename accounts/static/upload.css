@@ -2,6 +2,16 @@
 background-color:#EBECF0;
 }
 
+#upload{
+    font-size:30px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height:65px;
+    width:65px;
+    border-radius:100px;
+}
+
 #pagebutton, .uploadinput,textarea {
         border: 0;
         outline: 0;
@@ -37,4 +47,35 @@ background-color:#EBECF0;
 
 .uploadinput:focus {
   box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+#sideNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: scroll;
+    padding-top: 60px;
+    transition: .2s;
+}
+
+.list-group-item{
+    border-left: transparent;
+    border-right: transparent;
+}
+
+#openSideNav{
+    margin-left:10px;
+    font-size:20px;
+    color: #FFF;
+    background-color:
+    transparent;border: 0;
+    outline: 0;
+}
+.collapse.width {
+  width: 250px;
+  overflow: hidden;
+  -webkit-transition: width 0.35s ease;
+  -moz-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease;
 }
