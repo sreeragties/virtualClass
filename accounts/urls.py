@@ -13,5 +13,6 @@ urlpatterns = [
     path('create_class/',views.createClass,name="create_class"),
     path('join_class/',views.joinClass,name="join_class"),
     path('class_page/<str:class_code>/',views.classView,name="class_page"),
+    path('join_page/<str:class_code>/',views.joinView,name="join_page"),
     path('upload_notes/<str:class_code>/',views.noteUpload,name="upload_note")
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -56,7 +56,7 @@
                             <p class="card-text text-muted ml-5">{{note.desc}}</p>
                             {% if note.file %}
                             <h6 class="card-title">FILE</h6>
-                           <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
+                            <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
                             {% endif %}
                        </div>
                     </div>
@@ -64,7 +64,6 @@
         </div>
 
         <div class="col-2 ml-auto text-center">
-            <a href="{%url 'upload_note' classname.code %}" role="button" class="btn btn-primary" id="upload">+</a>
             <div class="card bg-light">
                 <div class="card-header h6">CLASS CODE</div>
                 <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
@@ -77,16 +76,4 @@
 
     </div>
 </div>
-<div id="theModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-  <script>
-    $('#upload').on('click', function(e){
-      e.preventDefault();
-      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
-    });
-  </script>
 {% endblock %}

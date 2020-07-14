@@ -80,6 +80,14 @@ def classView(request,class_code):
     return render(request, 'individual/class.html',{'students':students, 'classname':classname, 'notes':notes})
 
 @login_required
+def joinView(request,class_code):
+    classname = Classes.objects.get(code=class_code)
+    ids = Join.objects.filter(class_code=class_code).values_list('user_id',flat=True)
+    students = User.objects.filter(id__in=ids)
+    notes = Notes.objects.filter(class_code=class_code)
+    return render(request, 'individual/join.html',{'students':students, 'classname':classname, 'notes':notes})
+
+@login_required
 def noteUpload(request,class_code):
     classname = Classes.objects.get(code=class_code)
     if request.method == "POST":
@@ -87,7 +95,7 @@ def noteUpload(request,class_code):
         if form.is_valid():
             title = form.cleaned_data['title']
             desc = form.cleaned_data['desc']
-            file = request.FILES['file']
+            file = request.FILES.get('file')
             classname = Classes.objects.get(code=class_code)
             p = Notes(class_code=classname, title = title, desc = desc, file = file)
             p.save()

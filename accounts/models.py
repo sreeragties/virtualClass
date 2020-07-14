@@ -24,7 +24,7 @@ class Join(models.Model):
 
 class Notes(models.Model):
     class_code = models.ForeignKey(Classes, on_delete=models.CASCADE)
-    upoladingdate = models.DateTimeField(auto_now_add=True)
+    uploadingdate = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=30)
     desc = models.TextField(blank=True)
     file = models.FileField(null=True)
