@@ -79,3 +79,7 @@ background-color:#EBECF0;
   -o-transition: width 0.35s ease;
   transition: width 0.35s ease;
 }
+
+#class_del{
+    bottom: 0px;
+}
