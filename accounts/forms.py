@@ -35,4 +35,4 @@ class ClassesForm(forms.Form):
 class NotesForm(forms.Form):
     title = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Title','class':'uploadinput'}))
     file = forms.FileField(label='Upload File',required=False)
-    desc = forms.CharField(widget=forms.Textarea(attrs={'placeholder':'Description','class':'uploadinput'}))
+    desc = forms.CharField(required = False,widget=forms.Textarea(attrs={'placeholder':'Description','class':'uploadinput'}))

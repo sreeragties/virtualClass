@@ -1,0 +1,79 @@
+{% extends 'dashboard.html'%}
+{% load static %}
+
+{% block title %} {{ classname.classes }} {% endblock %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'upload.css' %}">
+{% endblock %}
+
+{% block nav_content%}
+    <a class="navbar-brand mr-auto" href="{%url 'class_page' classname.code %}"><b>{{ classname.classes }}</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'dashboard' %}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{%url 'logout' %}">Logout</a>
+            </div>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block content%}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-2" id="list">
+            <ul class="list-group list-group-flush bg-light " style="font-size:.9rem; overflow-x: auto;">
+                <li class="list-group-item" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
+                <div id="demo" class="collapse">
+                    {% for student in students %}
+                    <li class="list-group-item" >{{student.username}}</li>
+                    {% endfor %}
+                </div>
+
+            </ul>
+        </div>
+
+        <div class="col-8 ml-auto">
+            {% for note in notes %}
+                    <div class="card mb-2 bg-light">
+                       <div class="card-header">
+                            <h6 class="card-title">{{note.title}}</h6>
+                            <h6 class="card-text text-muted text-right">{{note.uploadingdate}}</h6>
+                       </div>
+                        <div class="card-body">
+                            <h6 class="card-title">DESCRIPTION</h6>
+                            <p class="card-text text-muted ml-5">{{note.desc}}</p>
+                            {% if note.file %}
+                            <h6 class="card-title">FILE</h6>
+                            <p class="card-text ml-5"><a href="{{note.file.url}}">{{note.file}}</a></p>
+                            {% endif %}
+                       </div>
+                    </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-2 ml-auto text-center">
+            <div class="card bg-light">
+                <div class="card-header h6">CLASS CODE</div>
+                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
+                <div class="card-header border-top h6">TEACHER</div>
+                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.teacher }}</div>
+                <div class="card-header border-top h6">SUBJECT</div>
+                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.subject }}</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
