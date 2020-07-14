@@ -16,8 +16,8 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark sticky-top">
             {% block nav_content%}
+                <nav class="navbar navbar-expand-custom navbar-dark sticky-top">
                     <a class="navbar-brand" href="{%url 'home' %}">virtual <b>CLASS</b></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                         <span class="navbar-toggler-icon"></span>
@@ -35,10 +35,9 @@
                           </li>
                         </ul>
                       </div>
-               {% endif %}
+                    {% endif %}
+                </nav>
             {% endblock %}
-
-        </nav>
     {% block content %}
 
     {% endblock %}

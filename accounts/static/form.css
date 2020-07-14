@@ -31,10 +31,6 @@ nav{
 .nav-item:hover{
   border: 2px solid white;
 }
-@media (min-width: 400px) {
-  .container {
-    width: 400px;
-  }
 
 #title{
 
@@ -77,4 +73,25 @@ input {
       
 input:focus {
   box-shadow:  inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+@media (min-width: 400px){
+    .navbar-expand-custom {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-nav .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: flex!important;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
 }
