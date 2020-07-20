@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm,ClassesForm,NotesForm
@@ -21,6 +22,20 @@ def dashboardView(request):
     
     context= {'all_objects': all_objects,'all_classes':all_classes}
     return render(request, 'dashboard.html', context)
+
+def loginView(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+        else:
+            messages.error(request, 'Invalid Login Credentials')
+            return redirect('login_url')
+
+    return render(request,'registration/login.html')
 
 def registerView(request):
     if request.method == "POST":
