@@ -8,6 +8,38 @@
 
 
 {% block content %}
+<script> $(window).load(function(){
+    $('#exampleModal').modal('show');
+});
+    </script>
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" align="center">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content" style="width: 25rem; height: 11rem;">
+     
+      <div class="modal-body" >
+      
+      
+        
+        <div class="container mt-4"  align="center">
+        
+        <p class="p-3 h5 text-secondary text-center"> Are you sure you wanna log out?</p>
+      
+  
+        <div class="row" >
+        <div class="col-md-6">
+        <a href="{%url 'logout' %}" role="button" class="btn btn-danger btn-sm ">Logout</a></div>
+        <div class="col-md-4">
+        <a role="button" class="btn btn-secondary btn-sm float-right text-light " data-dismiss="modal" aria-label="Close">
+        &nbsp;&nbsp;   No  &nbsp;&nbsp;    
+        </a></div>
+        </div>
+    
+     </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
     <div class="container mt-4 " align="center" style="width:400px;">
     <form method="POST">
