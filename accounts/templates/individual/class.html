@@ -140,10 +140,10 @@ $(window).load(function(){
 </div>
 
 <div class="container" >
-    <div class="collapse width" id="sideNav" style="background-color:white; height:100vh;" align = "center">
+    <div class="collapse width " id="sideNav" style="background-color:white; height:100vh;" align = "center">
         <br>
-        <ul class="list-group list-group-flush bg-transparent " style="font-size:.9rem; overflow-x: auto;" >
-            <li class="list-group-item" data-toggle="collapse" role="button" data-target="#demo"  ><b>STUDENTS</b></li>
+        <ul class="list-group list-group-flush bg-transparent list-unstyled" style="font-size:.9rem; overflow-x: auto;" >
+            <li class="list-group-item dropdown-toggle " data-toggle="collapse" role="button" data-target="#demo"  ><b>STUDENTS</b></li>
             <div id="demo" class="collapse">
                 {% for student in students %}
                 <li class="list-group-item" >{{student.username}}</li>
