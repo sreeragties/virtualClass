@@ -16,6 +16,7 @@ urlpatterns = [
     path('class_page/<str:class_code>/',views.classView,name="class_page"),
     path('join_page/<str:class_code>/',views.joinView,name="join_page"),
     path('upload_notes/<str:class_code>/',views.noteUpload,name="upload_note"),
+    path('upload_assignment/<str:class_code>/',views.assignmentUpload,name="upload_assignment"),
     path('delete_notes/<str:class_code>/<int:note_id>/',views.noteDelete,name="delete_note"),
     path('delete_class/<str:class_code>/',views.classDelete,name="delete_class"),
     path('unenroll_class/<str:class_code>/',views.classUnenroll,name="unenroll_class")

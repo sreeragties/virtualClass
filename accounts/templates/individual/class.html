@@ -65,6 +65,7 @@ $(window).load(function(){
 
         <div class="col-3 px-0 mr-1 text-center">
             <a href="{%url 'upload_note' classname.code %}" role="button" class="btn btn-primary" id="upload" style="z-index:1;">+</a>
+            <a href="{%url 'upload_assignment' classname.code %}" role="button" class="btn btn-primary" id="upload1" style="z-index:1;">+</a>
             <div class="card bg-light">
                 <div class="card-header h6">CLASS CODE</div>
                 <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
@@ -161,6 +162,7 @@ $(window).load(function(){
       e.preventDefault();
       $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
     });
+
     $(document).click(function(e) {
 	if ($(e.target).closest(".container").length === 0) {
     	$('.collapse').collapse('hide');

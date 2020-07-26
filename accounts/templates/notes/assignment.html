@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </head>
+<body>
+<div class="modal-body">
+    <p id="title" class="h4 mt-3 mb-4 text-secondary text-center">Post</p>
+    <form method="POST" enctype="multipart/form-data" action="{%url 'upload_assignment' classname.code %}">
+        {% csrf_token %}
+        {{ form.media }}
+        {% for field in form %}
+            {{ field }}<br><br>
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        <button id="pagebutton" type="submit">Post</button>
+    </form>
+</div>
+</body>
+</html>

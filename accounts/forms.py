@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from bootstrap_datepicker_plus import DateTimePickerInput
 from django.forms import ModelForm
 from .models import Classes
 
@@ -29,3 +30,10 @@ class NotesForm(forms.Form):
     title = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Title','class':'uploadinput'}))
     file = forms.FileField(label='Upload File',required=False)
     desc = forms.CharField(required = False,widget=forms.Textarea(attrs={'placeholder':'Description','class':'uploadinput'}))
+
+class AssignmentForm(forms.Form):
+    title = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Title','class':'uploadinput'}))
+    file = forms.FileField(label='Upload File',required=False)
+    desc = forms.CharField(required = False,widget=forms.Textarea(attrs={'placeholder':'Description','class':'uploadinput'}))
+    last_date=forms.DateTimeField(label="Submission Date",widget=DateTimePickerInput())
+    max_marks = forms.FloatField(widget=forms.TextInput(attrs={'placeholder': 'Maximum Marks', 'class': 'uploadinput'}))

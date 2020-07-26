@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm,ClassesForm,NotesForm
+from .forms import SignUpForm,ClassesForm,NotesForm,AssignmentForm
 from django.utils.crypto import get_random_string
-from .models import Classes,Join,Notes
+from .models import Classes,Join,Notes,Assignment
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -125,6 +125,25 @@ def noteDelete(request,class_code,note_id):
     return redirect('class_page',class_code=class_code)
 
 @login_required
+def assignmentUpload(request,class_code):
+    classname = Classes.objects.get(code=class_code)
+    if request.method == "POST":
+        form = AssignmentForm(request.POST,request.FILES)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            desc = form.cleaned_data['desc']
+            file = request.FILES.get('file')
+            last_date=form.cleaned_data['last_date']
+            max_marks=form.cleaned_data['max_marks']
+            classname = Classes.objects.get(code=class_code)
+            p = Assignment(class_code=classname, title = title, desc = desc, file = file,last_date=last_date,max_marks=max_marks)
+            p.save()
+            return redirect('class_page',class_code=class_code)
+    else:
+        form = AssignmentForm()
+    return render(request,'notes/assignment.html',{'form':form, 'classname':classname})
+
+@login_required
 def classDelete(request,class_code):
     Classes.objects.get(pk=class_code).delete()
     return redirect('dashboard')
@@ -133,3 +152,4 @@ def classDelete(request,class_code):
 def classUnenroll(request,class_code):
     Join.objects.get(class_code_id=class_code,user_id=request.user).delete()
     return redirect('dashboard')
+
