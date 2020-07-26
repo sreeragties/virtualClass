@@ -35,5 +35,5 @@ class AssignmentForm(forms.Form):
     title = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'placeholder':'Title','class':'uploadinput'}))
     file = forms.FileField(label='Upload File',required=False)
     desc = forms.CharField(required = False,widget=forms.Textarea(attrs={'placeholder':'Description','class':'uploadinput'}))
-    last_date=forms.DateTimeField(label="Submission Date",widget=DateTimePickerInput())
+    last_date=forms.DateTimeField(label="Submission Date",widget=DateTimePickerInput(attrs={'placeholder':'Last date'}))
     max_marks = forms.FloatField(widget=forms.TextInput(attrs={'placeholder': 'Maximum Marks', 'class': 'uploadinput'}))

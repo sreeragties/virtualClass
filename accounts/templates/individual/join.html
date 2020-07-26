@@ -3,7 +3,7 @@
 
 {% block title %} {{ classname.classes }} {% endblock %}
 {% block link %}
-        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'upload.css' %}">
 {% endblock %}
 
@@ -41,7 +41,7 @@
 
         <div class="col-7 px-0 ml-auto mr-auto">
             {% for note in notes %}
-                    <div class="card mb-2 bg-light">
+                    <div class="card mb-2">
                        <div class="card-header">
                             <h6 class="card-title">{{note.title}}</h6>
                            <h6 class="card-text text-muted text-right"><small>{{note.uploadingdate}}</small></h6>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="col-3 px-0 mr-1 text-center">
-            <div class="card bg-light">
+            <div class="card ml-auto" style="width: 8rem;">
                 <div class="card-header h6">CLASS CODE</div>
                 <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
                 <div class="card-header border-top h6">TEACHER</div>
@@ -71,34 +71,24 @@
 
     </div>
 </div>
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" align="center">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content" style="width: 25rem; height: 11rem;">
-     
-      <div class="modal-body" >
-      
-      
-        
-        <div class="container mt-4"  align="center">
-        
-        <p class="p-3 h5 text-secondary text-center"> Are you sure you want to log out?</p>
-      
-  
-        <div class="row" >
-        <div class="col-md-6">
-        <a href="{%url 'logout' %}" role="button" class="btn btn-danger btn-sm ">Logout</a></div>
-        <div class="col-md-4">
-        <a role="button" class="btn btn-secondary btn-sm float-right text-light " data-dismiss="modal" aria-label="Close">
-        &nbsp;&nbsp;   No  &nbsp;&nbsp;    
-        </a></div>
+<div class="modal fade" id="exampleModal" align="center">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-body" >
+            <div class="container mt-4 mb-4"  align="center">
+                <p class="p-3 h5 text-secondary text-center"> Are you sure you want to log out?</p>
+                <br>
+                <div class="row" >
+                    <div class="col">
+                        <a href="{%url 'logout' %}" role="button" class="btn btn-danger float-right">Logout</a></div>
+                    <div class="col">
+                        <a role="button" class="btn btn-secondary pl-3 pr-3 text-light float-left " data-dismiss="modal" aria-label="Close">No</a></div>
+                </div>
+            </div>
+          </div>
         </div>
-    
-     </div>
       </div>
-      
     </div>
-  </div>
-  </div>
 <div class="container" >
     <div class="collapse width" id="sideNav" style="background-color: #eeeff7; height:100vh;" align = "center">
         <br>

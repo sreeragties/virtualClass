@@ -6,6 +6,12 @@
         <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
 {% endblock %}
 
+{% block nav_content%}
+{%  if user.is_authenticated %}
+<meta http-equiv="refresh" content="0; url = {%url 'dashboard' %}" />
+{% endif %}
+{% endblock %}
+
 
 {% block content %}
 <script>
@@ -26,21 +32,22 @@
     }, false);
 }(window, location));
     </script>
-    <div class="container mt-4 container-sm " align="center" style="width:400px;">
-    
-    <form method="POST">
-        {% csrf_token %}
-        <p id="title" class="h4 mb-4 text-secondary text-center ">Sign up</p>
-        {% for field in form %}
-	        	{{ field }}
-		        {% for error in field.errors %}
-		          <p style="color: red">{{ error }}</p>
-		        {% endfor %}
-		    </p>
-		    {% endfor %}
-        <button id="pagebutton" >Register</button>
-    </form><br><br>
-    
+<div id="bod" class="d-flex align-items-center min-vh-100">
+    <div class="container bg-white border pl-4 pr-4 pt-4 " align="center" style="border-radius:7px; width:400px;">
+    <a class="h5" href="{%url 'home' %}" style="text-decoration: none;">virtual <b>CLASS</b></a>
+        <form method="POST">
+            {% csrf_token %}
+            <p id="title" class="h5 my-3 text-secondary text-center">Sign Up</p>
+            {% for field in form %}
+                    {{ field }}
+                    {% for error in field.errors %}
+                      <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+                {% endfor %}
+            <button id="pagebutton" >Sign up</button>
+        </form>
+        <p class="text-secondary mt-4"><small>Have an account? <a href="{%url 'login_url' %}" ><b>Login</b></a></small></p>
     </div>
-    
+</div>
 {% endblock %}

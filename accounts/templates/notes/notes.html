@@ -1,5 +1,5 @@
-<div class="modal-body">
-    <p id="title" class="h4 mt-3 mb-4 text-secondary text-center">Post</p>
+<div class="modal-body" align="center">
+    <p id="title" class="h5 mt-3 mb-4 text-secondary text-center">Upload Note</p>
     <form method="POST" enctype="multipart/form-data" action="{%url 'upload_note' classname.code %}">
         {% csrf_token %}
         {% for field in form %}
@@ -8,6 +8,6 @@
                 <p style="color: red">{{ error }}</p>
             {% endfor %}
         {% endfor %}
-        <button id="pagebutton" type="submit">Post</button>
+        <button id="pagebutton" type="submit">Upload</button>
     </form>
 </div>

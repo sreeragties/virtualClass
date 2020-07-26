@@ -4,7 +4,7 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block link %}
-        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
 {% endblock %}
 
 {% block nav_content%}
@@ -55,13 +55,13 @@
     <p class="h4 mb-4 text-secondary text-center"> Created Classes</p>
     <div class="card-deck" id="cdeck">{% for class in all_objects %}
         <div class="col-auto mb-3">
-            <div class="card mb-3 bg-light" style="width: 13rem; height: 15rem;">
-                <div class="card-header text-center"><a class="stretched-link" href="{%url 'class_page' class.code %}">{{ class.classes }}</a></div>
+            <div class="card mb-3" style="width: 13rem; height: 16rem;">
+                <div class="card-header h6 text-left py-5"><a class="stretched-link" href="{%url 'class_page' class.code %}" style="text-decoration: none; color:#FFF;">{{ class.classes }}</a></div>
 
                 <div class="card-body text-center">
-                    <h6 class="card-title">SUBJECT</h6>
+                    <h6 class="card-title mt-0 mb-0">SUBJECT</h6>
                     <p class="card-text text-muted">{{ class.subject }}</p>
-                    <h6 class="card-title">TEACHER</h6>
+                    <h6 class="card-title mb-0">TEACHER</h6>
                     <p class="card-text text-muted">{{ class.teacher }}</p>
                 </div>
             </div>
@@ -73,47 +73,37 @@
     <p class="h4 mb-4 text-secondary text-center"> Joined Classes</p>
     <div class="card-deck" id="jdeck">{% for class in all_classes %}
         <div class="col-auto mb-3">
-            <div class="card mb-3 bg-light" style="width: 13rem; height: 15rem;">
-                <div class="card-header text-center"><a class="stretched-link" href="{%url 'join_page' class.code %}">{{ class.classes }}</a></div>
+            <div class="card mb-3" style="width: 13rem; height: 16rem;">
+                <div class="card-header h6 text-left py-5"><a class="stretched-link" href="{%url 'join_page' class.code %}" style="text-decoration: none; color:#FFF;">{{ class.classes }}</a></div>
 
                 <div class="card-body text-center">
-                    <h6 class="card-title">SUBJECT</h6>
+                    <h6 class="card-title mt-0 mb-0">SUBJECT</h6>
                     <p class="card-text text-muted">{{ class.subject }}</p>
-                    <h6 class="card-title">TEACHER</h6>
+                    <h6 class="card-title mb-0">TEACHER</h6>
                     <p class="card-text text-muted">{{ class.teacher }}</p>
                 </div>
             </div>
         </div>
         {% endfor %}</div>
     </div>
-    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" align="center">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content" style="width: 25rem; height: 11rem;">
-     
-      <div class="modal-body" >
-      
-      
-        
-        <div class="container mt-4"  align="center">
-        
-        <p class="p-3 h5 text-secondary text-center"> Are you sure you want to log out?</p>
-      
-  
-        <div class="row" >
-        <div class="col-md-6">
-        <a href="{%url 'logout' %}" role="button" class="btn btn-danger btn-sm ">Logout</a></div>
-        <div class="col-md-4">
-        <a role="button" class="btn btn-secondary btn-sm float-right text-light " data-dismiss="modal" aria-label="Close">
-        &nbsp;&nbsp;   No  &nbsp;&nbsp;    
-        </a></div>
+    <div class="modal fade" id="exampleModal" align="center">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-body" >
+            <div class="container mt-4 mb-4"  align="center">
+                <p class="p-3 h5 text-secondary text-center"> Are you sure you want to log out?</p>
+                <br>
+                <div class="row" >
+                    <div class="col">
+                        <a href="{%url 'logout' %}" role="button" class="btn btn-danger float-right">Logout</a></div>
+                    <div class="col">
+                        <a role="button" class="btn btn-secondary pl-3 pr-3 text-light float-left " data-dismiss="modal" aria-label="Close">No</a></div>
+                </div>
+            </div>
+          </div>
         </div>
-    
-     </div>
       </div>
-      
     </div>
-  </div>
-</div>
 
     <div class="noclass" style="display:none">
         <p class="p-5 h6 text-secondary text-center"> You haven't created or joined a class yet</p>

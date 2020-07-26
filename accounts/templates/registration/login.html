@@ -6,6 +6,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'form.css' %}">
 {% endblock %}
 
+{% block nav_content%}
+{%  if user.is_authenticated %}
+<meta http-equiv="refresh" content="0; url = {%url 'dashboard' %}" />
+{% endif %}
+{% endblock %}
+
+
 
 {% block content %}
     <script>
@@ -26,14 +33,16 @@
     }, false);
     }(window, location));
     </script>
-    <div class="container mt-4"  align="center" style="width:400px;">
+<div id="bod" class="d-flex align-items-center min-vh-100">
+    <div class="container bg-white border pl-4 pr-4 pt-4"  align="center" style="border-radius:7px; width:400px;">
+    <a class="h5" href="{%url 'home' %}" style="text-decoration: none;">virtual <b>CLASS</b></a>
     <form method="POST">
         {% csrf_token %}
-        <p id="title" class="h4 mb-4 text-secondary text-center">Login</p>
+        <p id="title" class="h5 my-3 text-secondary text-center">Login</p>
 
-        <p><input type="text" name="username" autofocus="" required="" id="id_username" placeholder="username"></p>
+        <p><input  class="border" type="text" name="username" autofocus="" required="" id="id_username" placeholder="username"></p>
 
-        <p><input type="password" name="password" required="" id="id_password" placeholder="password"></p>
+        <p><input  class="border" type="password" name="password" required="" id="id_password" placeholder="password"></p>
 
         {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
@@ -50,7 +59,10 @@
                 </div>
             {% endfor %}
         {% endif %}
+        <button  id="pagebutton" >Sign in</button>
+    </form>
+        <p class="text-secondary mt-4"><small>Don't have an account? <a href="{%url 'register_url' %}" ><b>Register</b></a></small></p>
 
-        <button id="pagebutton" >Sign in</button>
-    </form>    </div>
+    </div>
+</div>
 {% endblock %}

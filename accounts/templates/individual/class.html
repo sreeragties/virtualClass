@@ -3,7 +3,7 @@
 
 {% block title %} {{ classname.classes }} {% endblock %}
 {% block link %}
-        <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'upload.css' %}">
 {% endblock %}
 
@@ -45,7 +45,7 @@ $(window).load(function(){
 
         <div class="col-7 px-0 ml-auto mr-auto">
             {% for note in notes %}
-                    <div class="card mb-2 bg-light">
+                    <div class="card mb-2">
                        <div class="card-header">
                             <h6 class="card-title">{{note.title}}</h6>
                            <h6 class="card-text text-muted text-right"><small>{{note.uploadingdate}}</small></h6>
@@ -65,8 +65,8 @@ $(window).load(function(){
 
         <div class="col-3 px-0 mr-1 text-center">
             <a href="{%url 'upload_note' classname.code %}" role="button" class="btn btn-primary" id="upload" style="z-index:1;">+</a>
-            <a href="{%url 'upload_assignment' classname.code %}" role="button" class="btn btn-primary" id="upload1" style="z-index:1;">+</a>
-            <div class="card bg-light">
+			<a href="{%url 'upload_assignment' classname.code %}" role="button" class="btn btn-primary" id="upload1" style="z-index:1;">+</a>
+            <div class="card ml-auto" style="width: 8rem;">
                 <div class="card-header h6">CLASS CODE</div>
                 <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
                 <div class="card-header border-top h6">TEACHER</div>
@@ -78,62 +78,45 @@ $(window).load(function(){
 
     </div>
 </div>
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" align="center">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content" style="width: 25rem; height: 11rem;">
-     
-      <div class="modal-body" >
-      
-      
-        
-        <div class="container mt-4"  align="center">
-        
-        <p class="p-3 h5 text-secondary text-center"> Are you sure you want to log out?</p>
-      
-  
-        <div class="row" >
-        <div class="col-md-6">
-        <a href="{%url 'logout' %}" role="button" class="btn btn-danger btn-sm ">Logout</a></div>
-        <div class="col-md-4">
-        <a role="button" class="btn btn-secondary btn-sm float-right text-light " data-dismiss="modal" aria-label="Close">
-        &nbsp;&nbsp;   No  &nbsp;&nbsp;    
-        </a></div>
+
+  <div class="modal fade" id="exampleModal" align="center">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-body" >
+            <div class="container mt-4 mb-4"  align="center">
+                <p class="p-3 h5 text-secondary text-center"> Are you sure you want to log out?</p>
+                <br>
+                <div class="row" >
+                    <div class="col">
+                        <a href="{%url 'logout' %}" role="button" class="btn btn-danger float-right">Logout</a></div>
+                    <div class="col">
+                        <a role="button" class="btn btn-secondary pl-3 pr-3 text-light float-left " data-dismiss="modal" aria-label="Close">No</a></div>
+                </div>
+            </div>
+          </div>
         </div>
-    
-     </div>
       </div>
-      
+    </div>
+
+<div class="modal fade" id="exampleModal2" align="center">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-body" >
+          <div class="container mt-4 mb-4"  align="center">
+             <p class="p-3 h5 text-secondary text-center"> Are you sure you want to delete the class?</p>
+              <br>
+            <div class="row" >
+                <div class="col">
+                    <a href="{%url 'delete_class' classname.code %}" role="button" class="btn btn-danger float-right">Delete</a></div>
+                <div class="col">
+                    <a role="button" class="btn btn-secondary pl-3 pr-3 text-light float-left" data-dismiss="modal" aria-label="Close">No</a></div>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
-  </div>
-  <div class="modal fade bd-example-modal-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" align="center">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content" style="width: 30rem; height: 11rem;">
-     
-      <div class="modal-body" >
-      
-      
-        
-        <div class="container mt-4"  align="center">
-        
-        <p class="p-3 h5 text-secondary text-center"> Are you sure you want to delete the class?</p>
-      
-  
-        <div class="row" >
-        <div class="col-md-6">
-        <a href="{%url 'delete_class' classname.code %}" role="button" class="btn btn-danger btn-sm ">Delete</a></div>
-        <div class="col-md-4">
-        <a role="button" class="btn btn-secondary btn-sm  text-light " data-dismiss="modal" aria-label="Close">
-        &nbsp;&nbsp;   No  &nbsp;&nbsp;    
-        </a></div>
-        </div>
-    
-     </div>
-      </div>
-      
-    </div>
-  </div>
-  </div>
+</div>
+
 <div id="theModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content"></div>
