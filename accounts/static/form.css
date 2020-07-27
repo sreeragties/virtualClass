@@ -7,10 +7,10 @@
     background-position: center;
 }
 
-body{
+#bod2{
+    min-height: calc(100vh - 80px);
     position: relative;
     background: url(class.svg);
-    min-height: 100vh;
     background-size: cover;
     background-position: center;
 }
