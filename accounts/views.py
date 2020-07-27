@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm,ClassesForm,NotesForm,AssignmentForm
 from django.utils.crypto import get_random_string
-from .models import Classes,Join,Notes,Assignment
+from .models import Classes,Join,Notes,Assignment,SubmitAssignment
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -142,6 +142,16 @@ def assignmentUpload(request,class_code):
     else:
         form = AssignmentForm()
     return render(request,'notes/assignment.html',{'form':form, 'classname':classname})
+
+@login_required
+def submitAssignment(request,assignment_id):
+    class_code = Assignment.objects.filter(pk=assignment_id).values_list('class_code',flat=True)[0]
+    if request.method == "POST":
+        file = request.FILES.get('file')
+        p = SubmitAssignment(assignment_id=assignment_id,user_id=request.user,submitted_file=file)
+        p.save()
+        return redirect('join_page',class_code=class_code)
+    return render(request,'notes/submit.html',{'assignment_id':assignment_id})
 
 @login_required
 def assignmentDelete(request,class_code,assignment_id):

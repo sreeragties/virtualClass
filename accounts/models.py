@@ -40,14 +40,22 @@ class Assignment(models.Model):
     title = models.CharField(max_length=30)
     desc = models.TextField(blank=True)
     file = models.FileField(null=True)
-    submitted_file = models.FileField(null=True)
     last_date=models.DateTimeField()
-    submitted_date=models.DateTimeField(null=True)
-    marks=models.FloatField(null=True)
     max_marks=models.FloatField()
-    remarks=models.CharField(max_length=40,blank=True)
-    flag=models.BooleanField(default=False)
 
     def delete(self, *args, **kwargs):
         self.file.delete()
+        super().delete(*args, **kwargs)
+
+
+class SubmitAssignment(models.Model):
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    submitted_file = models.FileField()
+    submitted_date = models.DateTimeField(auto_now_add=True)
+    marks = models.FloatField(null=True)
+    remarks = models.CharField(max_length=40, blank=True)
+
+    def delete(self, *args, **kwargs):
+        self.submitted_file.delete()
         super().delete(*args, **kwargs)

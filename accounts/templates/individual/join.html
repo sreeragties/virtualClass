@@ -81,7 +81,7 @@
                             <p class="card-text text-muted ml-5">{{assignment.max_marks}}</p>
                             <h6 class="card-title">SUBMISSION DATE</h6>
                             <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
-                            <a href="#" role="button" class="btn btn-success btn-sm float-right" id="submit_assignment">Submit</a>
+                            <a href="{%url 'submit_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm float-right" id="submit_assignment">Submit</a>
                        </div>
                     </div>
             {% endfor %}
@@ -118,6 +118,13 @@
         </div>
       </div>
     </div>
+
+<div id="classModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+</div>
+
 <div class="container" >
     <div class="collapse width" id="sideNav" style="background-color: #eeeff7; height:100vh;" align = "center">
         <br>
@@ -133,6 +140,11 @@
     </div>
 </div>
 <script>
+    /*$('#submit_assignment').on('click', function(e){
+      e.preventDefault();
+      $('#classModal').modal('show').find('.modal-content').load($(this).attr('href'));
+    });*/
+
     $(document).click(function(e) {
 	if ($(e.target).closest(".container").length === 0) {
     	$('.collapse').collapse('hide');
