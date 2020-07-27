@@ -101,7 +101,8 @@ def joinView(request,class_code):
     ids = Join.objects.filter(class_code=class_code).values_list('user_id',flat=True)
     students = User.objects.filter(id__in=ids)
     notes = Notes.objects.filter(class_code=class_code)
-    return render(request, 'individual/join.html',{'students':students, 'classname':classname, 'notes':notes})
+    assignments = Assignment.objects.filter(class_code=class_code)
+    return render(request, 'individual/join.html',{'students':students, 'classname':classname, 'notes':notes,'assignments':assignments})
 
 @login_required
 def noteUpload(request,class_code):
