@@ -7,7 +7,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('',views.indexView,name="home"),
     path('dashboard/',views.dashboardView,name="dashboard"),
-    #path('login/',LoginView.as_view(),name="login_url"),
     path('login/',views.loginView,name="login_url"),
     path('register/',views.registerView,name="register_url"),
     path('logout/',LogoutView.as_view(next_page='home'),name="logout"),
@@ -18,6 +17,7 @@ urlpatterns = [
     path('upload_notes/<str:class_code>/',views.noteUpload,name="upload_note"),
     path('upload_assignment/<str:class_code>/',views.assignmentUpload,name="upload_assignment"),
     path('delete_notes/<str:class_code>/<int:note_id>/',views.noteDelete,name="delete_note"),
+    path('delete_assignment/<str:class_code>/<int:assignment_id>/',views.assignmentDelete,name="delete_assignment"),
     path('delete_class/<str:class_code>/',views.classDelete,name="delete_class"),
     path('unenroll_class/<str:class_code>/',views.classUnenroll,name="unenroll_class")
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

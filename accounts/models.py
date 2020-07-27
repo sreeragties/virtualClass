@@ -40,6 +40,7 @@ class Assignment(models.Model):
     title = models.CharField(max_length=30)
     desc = models.TextField(blank=True)
     file = models.FileField(null=True)
+    submitted_file = models.FileField(null=True)
     last_date=models.DateTimeField()
     submitted_date=models.DateTimeField(null=True)
     marks=models.FloatField(null=True)

@@ -92,7 +92,8 @@ def classView(request,class_code):
     ids = Join.objects.filter(class_code=class_code).values_list('user_id',flat=True)
     students = User.objects.filter(id__in=ids)
     notes = Notes.objects.filter(class_code=class_code)
-    return render(request, 'individual/class.html',{'students':students, 'classname':classname, 'notes':notes})
+    assignments = Assignment.objects.filter(class_code=class_code)
+    return render(request, 'individual/class.html',{'students':students, 'classname':classname, 'notes':notes, 'assignments':assignments})
 
 @login_required
 def joinView(request,class_code):
@@ -111,7 +112,6 @@ def noteUpload(request,class_code):
             title = form.cleaned_data['title']
             desc = form.cleaned_data['desc']
             file = request.FILES.get('file')
-            classname = Classes.objects.get(code=class_code)
             p = Notes(class_code=classname, title = title, desc = desc, file = file)
             p.save()
             return redirect('class_page',class_code=class_code)
@@ -135,13 +135,17 @@ def assignmentUpload(request,class_code):
             file = request.FILES.get('file')
             last_date=form.cleaned_data['last_date']
             max_marks=form.cleaned_data['max_marks']
-            classname = Classes.objects.get(code=class_code)
             p = Assignment(class_code=classname, title = title, desc = desc, file = file,last_date=last_date,max_marks=max_marks)
             p.save()
             return redirect('class_page',class_code=class_code)
     else:
         form = AssignmentForm()
     return render(request,'notes/assignment.html',{'form':form, 'classname':classname})
+
+@login_required
+def assignmentDelete(request,class_code,assignment_id):
+    Assignment.objects.get(pk=assignment_id).delete()
+    return redirect('class_page',class_code=class_code)
 
 @login_required
 def classDelete(request,class_code):
