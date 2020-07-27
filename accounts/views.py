@@ -102,7 +102,8 @@ def joinView(request,class_code):
     students = User.objects.filter(id__in=ids)
     notes = Notes.objects.filter(class_code=class_code)
     assignments = Assignment.objects.filter(class_code=class_code)
-    return render(request, 'individual/join.html',{'students':students, 'classname':classname, 'notes':notes,'assignments':assignments})
+    submit_assignments = SubmitAssignment.objects.filter(assignment__in=assignments)
+    return render(request, 'individual/join.html',{'students':students, 'classname':classname, 'notes':notes,'assignments':assignments,'submitted_assignments':submit_assignments})
 
 @login_required
 def noteUpload(request,class_code):
@@ -152,6 +153,12 @@ def submitAssignment(request,assignment_id):
         p.save()
         return redirect('join_page',class_code=class_code)
     return render(request,'notes/submit.html',{'assignment_id':assignment_id})
+
+@login_required
+def unsubmitAssignment(request,assignment_id,submitted_id):
+    class_code = Assignment.objects.filter(pk=assignment_id).values_list('class_code',flat=True)[0]
+    SubmitAssignment.objects.get(pk=submitted_id).delete()
+    return redirect('join_page',class_code=class_code)
 
 @login_required
 def assignmentDelete(request,class_code,assignment_id):

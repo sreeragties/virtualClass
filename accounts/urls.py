@@ -19,6 +19,7 @@ urlpatterns = [
     path('delete_notes/<str:class_code>/<int:note_id>/',views.noteDelete,name="delete_note"),
     path('delete_assignment/<str:class_code>/<int:assignment_id>/',views.assignmentDelete,name="delete_assignment"),
     path('submit_assignment/<int:assignment_id>/',views.submitAssignment,name="submit_assignment"),
+    path('unsubmit_assignment/<int:assignment_id>/<int:submitted_id>/',views.unsubmitAssignment,name="unsubmit_assignment"),
     path('delete_class/<str:class_code>/',views.classDelete,name="delete_class"),
     path('unenroll_class/<str:class_code>/',views.classUnenroll,name="unenroll_class")
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

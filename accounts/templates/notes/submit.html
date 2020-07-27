@@ -2,7 +2,7 @@
     <p id="title" class="h5 mt-3 mb-4 text-secondary text-center">Submit Assignment</p>
     <form method="POST" enctype="multipart/form-data" action="{%url 'submit_assignment' assignment_id %}">
         {% csrf_token %}
-        <input type="file" name="file">
+        <input type="file" name="file" required>
         <br><br>
             {% for error in field.errors %}
                 <p style="color: red">{{ error }}</p>

@@ -1,5 +1,6 @@
 {% extends 'dashboard.html'%}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %} {{ classname.classes }} {% endblock %}
 {% block link %}
@@ -81,7 +82,21 @@
                             <p class="card-text text-muted ml-5">{{assignment.max_marks}}</p>
                             <h6 class="card-title">SUBMISSION DATE</h6>
                             <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
-                            <a href="{%url 'submit_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm float-right" id="assignment">Submit</a>
+                            {% find assignment submitted_assignments as flag %}
+                            {% if flag is None %}
+                                <a href="{%url 'submit_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm float-right" id="assignment">Submit</a>
+                            {% else %}
+                                <hr style="border-top: 3px double #8c8b8b;"/>
+                                <h6 class="card-title">FILE</h6>
+                                <p class="card-text ml-5"><a href="{{flag.submitted_file.url}}" target="_blank">{{flag.submitted_file}}</a></p>
+                                <h6 class="card-title">SUBMISSION TIME</h6>
+                                <p class="card-text text-muted ml-5">{{flag.submitted_date}}</p>
+                                <h6 class="card-title">MARKS</h6>
+                                <p class="card-text text-muted ml-5">{{flag.marks}}</p>
+                                <h6 class="card-title">REMARKS</h6>
+                                <p class="card-text text-muted ml-5">{{flag.remarks}}</p>
+                                <a href="{%url 'unsubmit_assignment' assignment.id flag.id%}" role="button" class="btn btn-danger btn-sm float-right">Unsubmit</a>
+                            {% endif %}
                        </div>
                     </div>
             {% endfor %}
