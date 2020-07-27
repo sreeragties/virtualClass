@@ -44,6 +44,11 @@ $(window).load(function(){
 
 </script>
 
+<ul class="nav nav-pills" >
+    <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#notes">Notes</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#assign">Assignments</a></li>
+</ul>
+
 <div class="noclass" style="display:none">
         <p class="p-5 h6 text-secondary text-center"> You haven't created or joined a class yet</p>
 </div>
@@ -51,54 +56,62 @@ $(window).load(function(){
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-7 px-0 ml-auto mr-auto">
-            {% if notes %}
-                <p class="h4 mb-4 text-secondary text-center">Notes</p>
-            {% endif %}
-            {% for note in notes %}
-                    <div class="card mb-2">
-                       <div class="card-header">
-                            <h6 class="card-title">{{note.title}}</h6>
-                           <h6 class="card-text text-muted text-right"><small>{{note.uploadingdate}}</small></h6>
-                       </div>
-                        <div class="card-body">
-                            <h6 class="card-title">DESCRIPTION</h6>
-                            <p class="card-text text-muted ml-5">{{note.desc}}</p>
-                            {% if note.file %}
-                            <h6 class="card-title">FILE</h6>
-                           <p class="card-text ml-5"><a href="{{note.file.url}}" target="_blank">{{note.file}}</a></p>
-                            {% endif %}
-                            <a href="{%url 'delete_note' classname.code note.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_note">Delete</a>
-                       </div>
-                    </div>
-            {% endfor %}
+            <div class="tab-content">
+                <div id="notes" class="tab-pane fade show active">
+                {% if notes %}
+                    <p class="h4 mb-4 text-secondary text-center">Notes</p>
+                    {% else %}
+                    <p class="mb-4 text-secondary text-center">There are no notes</p>
+                {% endif %}
+                {% for note in notes %}
+                        <div class="card mb-2">
+                           <div class="card-header">
+                                <h6 class="card-title">{{note.title}}</h6>
+                               <h6 class="card-text text-muted text-right"><small>{{note.uploadingdate}}</small></h6>
+                           </div>
+                            <div class="card-body">
+                                <h6 class="card-title">DESCRIPTION</h6>
+                                <p class="card-text text-muted ml-5">{{note.desc}}</p>
+                                {% if note.file %}
+                                <h6 class="card-title">FILE</h6>
+                               <p class="card-text ml-5"><a href="{{note.file.url}}" target="_blank">{{note.file}}</a></p>
+                                {% endif %}
+                                <a href="{%url 'delete_note' classname.code note.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_note">Delete</a>
+                           </div>
+                        </div>
+                {% endfor %}
+                </div>
 
-            <br>
-
-            {% if assignments %}
-                <p class="h4 mb-4 text-secondary text-center">Assignments</p>
-            {% endif %}
-            {% for assignment in assignments %}
-                    <div class="card mb-2">
-                       <div class="card-header">
-                            <h6 class="card-title">{{assignment.title}}</h6>
-                           <h6 class="card-text text-muted text-right"><small>{{assignment.uploadingdate}}</small></h6>
-                       </div>
-                        <div class="card-body">
-                            <h6 class="card-title">DESCRIPTION</h6>
-                            <p class="card-text text-muted ml-5">{{assignment.desc}}</p>
-                            {% if assignment.file %}
-                            <h6 class="card-title">FILE</h6>
-                           <p class="card-text ml-5"><a href="{{assignment.file.url}}" target="_blank">{{assignment.file}}</a></p>
-                            {% endif %}
-                            <h6 class="card-title">MAXIMUM MARKS</h6>
-                            <p class="card-text text-muted ml-5">{{assignment.max_marks}}</p>
-                            <h6 class="card-title">SUBMISSION DATE</h6>
-                            <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
-                            <a href="{%url 'delete_assignment' classname.code assignment.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_assignment">Delete</a>
-                            <a href="#" role="button" class="btn btn-success btn-sm" id="grade_assignment">Grade</a>
-                       </div>
-                    </div>
-            {% endfor %}
+                <div id="assign" class="tab-pane fade">
+                {% if assignments %}
+                    <p class="h4 mb-4 text-secondary text-center">Assignments</p>
+                    {% else %}
+                    <p class="mb-4 text-secondary text-center">There are no assignments</p>
+                {% endif %}
+                {% for assignment in assignments %}
+                        <div class="card mb-2">
+                           <div class="card-header">
+                                <h6 class="card-title">{{assignment.title}}</h6>
+                               <h6 class="card-text text-muted text-right"><small>{{assignment.uploadingdate}}</small></h6>
+                           </div>
+                            <div class="card-body">
+                                <h6 class="card-title">DESCRIPTION</h6>
+                                <p class="card-text text-muted ml-5">{{assignment.desc}}</p>
+                                {% if assignment.file %}
+                                <h6 class="card-title">FILE</h6>
+                               <p class="card-text ml-5"><a href="{{assignment.file.url}}" target="_blank">{{assignment.file}}</a></p>
+                                {% endif %}
+                                <h6 class="card-title">MAXIMUM MARKS</h6>
+                                <p class="card-text text-muted ml-5">{{assignment.max_marks}}</p>
+                                <h6 class="card-title">SUBMISSION DATE</h6>
+                                <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
+                                <a href="{%url 'delete_assignment' classname.code assignment.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_assignment">Delete</a>
+                                <a href="#" role="button" class="btn btn-success btn-sm" id="grade_assignment">Grade</a>
+                           </div>
+                        </div>
+                {% endfor %}
+                </div>
+            </div>
         </div>
 
         <div class="col-3 px-0 mr-1 text-center">

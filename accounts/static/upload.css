@@ -84,3 +84,23 @@ background-color:#FFF;
 .btn:focus,.btn:active {
    box-shadow: none;
 }
+
+.nav-pills {
+    justify-content:center;
+}
+
+.nav-pills > .nav-item > a{
+    text-align: center;
+    width :150px;
+    color : #000;
+}
+
+
+.nav-pills > .nav-item > .active{
+    transform: scale(1.1);
+    font-weight: bold;
+    border-radius : 0px;
+    background-color : transparent;
+    color : #7A87C2;
+    border-bottom: 3px solid #7A87C2;
+}
