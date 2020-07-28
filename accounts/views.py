@@ -167,6 +167,18 @@ def gradeAssignment(request,assignment_id):
     return render(request,'notes/grade.html',{'submitted_assignments':submitted_assignmnets ,'assign':assignment})
 
 @login_required
+def marksGrade(request,submit_id):
+    assignment = SubmitAssignment.objects.get(pk=submit_id)
+    if request.method == "POST":
+        marks = request.POST['marks']
+        remarks = request.POST['remarks']
+        assignment.marks=marks
+        assignment.remarks=remarks
+        assignment.save()
+        return redirect('grade_assignment',assignment_id=assignment.assignment.id)
+    return render(request,'notes/marks.html',{'submit_id':submit_id})
+
+@login_required
 def assignmentDelete(request,class_code,assignment_id):
     Assignment.objects.get(pk=assignment_id).delete()
     return redirect('class_page',class_code=class_code)
