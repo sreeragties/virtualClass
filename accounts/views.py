@@ -163,7 +163,8 @@ def unsubmitAssignment(request,assignment_id,submitted_id):
 @login_required
 def gradeAssignment(request,assignment_id):
     submitted_assignmnets = SubmitAssignment.objects.filter(assignment_id=assignment_id)
-    return render(request,'notes/grade.html',{'submitted_assignments':submitted_assignmnets})
+    assignment = Assignment.objects.get(pk=assignment_id)
+    return render(request,'notes/grade.html',{'submitted_assignments':submitted_assignmnets ,'assign':assignment})
 
 @login_required
 def assignmentDelete(request,class_code,assignment_id):

@@ -1,15 +1,33 @@
-<table>
-    <tr>
-        <th>Username</th><th>First Name</th><th>Last Name</th><th>File</th>
-    </tr>
-    {% for assignment in submitted_assignments %}
-    <tr>
-        <td>{{assignment.user_id.username}}</td>
-        <td>{{assignment.user_id.first_name}}</td>
-        <td>{{assignment.user_id.last_name}}</td>
-        <td><a href="{{assignment.submitted_file.url}}">{{assignment.submitted_file}}</a></td>
-        <td><a href="#" role="button" class="btn btn-success btn-sm float-right">Grade</a></td>
-    </tr>
-    {% endfor %}
-</table>
+{% extends 'dashboard.html'%}
+{% load static %}
 
+{% block title %} Grade {% endblock %}
+
+{% block link %}
+{% endblock %}
+
+{% block nav_content%}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5" align="center" style="min-width:500px;">
+        <p id="title" class="h6 mt-3 mb-4 text-secondary text-left"><strong>Assignment :</strong>&emsp;{{assign.title}}</p>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Username</th><th>First Name</th><th>Last Name</th><th>File</th><th></th>
+                </tr>
+            </thead>
+            {% for assignment in submitted_assignments %}
+            <tr>
+                <td>{{assignment.user_id.username}}</td>
+                <td>{{assignment.user_id.first_name}}</td>
+                <td>{{assignment.user_id.last_name}}</td>
+                <td><a href="{{assignment.submitted_file.url}}">{{assignment.submitted_file}}</a></td>
+                <td><a href="#" role="button" class="btn btn-success btn-sm float-right">Grade</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
