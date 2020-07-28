@@ -31,7 +31,7 @@
                 <td>{{assignment.submitted_date}}</td>
                 <td>{{assignment.marks}}</td>
                 <td>{{assignment.remarks}}</td>
-                <td><a href="{%url 'marks_grade' assignment.id %}" role="button" class="btn btn-success btn-sm float-right" id="grade">Grade</a></td>
+                <td><a href="{%url 'marks_grade' assignment.id %}" role="button" class="btn btn-success btn-sm float-right grade" >Grade</a></td>
             </tr>
             {% endfor %}
         </table>
@@ -45,7 +45,7 @@
     </div>
 
     <script>
-    $('#grade').on('click', function(e){
+    $('.grade').on('click', function(e){
       e.preventDefault();
       $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
     });
