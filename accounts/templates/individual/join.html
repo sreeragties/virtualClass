@@ -44,15 +44,13 @@
 </ul>
 
 <div class="container-fluid mt-3">
-    <div class="row">
-        <div class="col-7 px-0 ml-auto mr-auto">
             <div class="tab-content">
                 <div id="notes" class="tab-pane fade show active">
                 {% if not notes %}
                     <p class="mb-4 text-secondary text-center">There are no notes</p>
                 {% endif %}
                 {% for note in notes %}
-                        <div class="card mb-2">
+                        <div class="card mb-3 mx-auto" style="max-width:700px;">
                            <div class="card-header">
                                 <h6 class="card-title">{{note.title}}</h6>
                                <h6 class="card-text text-muted text-right"><small>{{note.uploadingdate}}</small></h6>
@@ -74,7 +72,7 @@
                     <p class="mb-4 text-secondary text-center">There are no assignments</p>
                 {% endif %}
                 {% for assignment in assignments %}
-                        <div class="card mb-2">
+                        <div class="card mb-3 mx-auto" style="max-width:700px;">
                            <div class="card-header">
                                 <h6 class="card-title">{{assignment.title}}</h6>
                                <h6 class="card-text text-muted text-right"><small>{{assignment.uploadingdate}}</small></h6>
@@ -110,20 +108,6 @@
                 {% endfor %}
                 </div>
             </div>
-        </div>
-
-        <div class="col-3 px-0 mr-1 text-center">
-            <div class="card ml-auto" style="width: 8rem;">
-                <div class="card-header h6">CLASS CODE</div>
-                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.code }}</div>
-                <div class="card-header border-top h6">TEACHER</div>
-                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.teacher }}</div>
-                <div class="card-header border-top h6">SUBJECT</div>
-                <div class="card-text mb-4 mt-1 text-secondary">{{ classname.subject }}</div>
-            </div>
-        </div>
-
-    </div>
 </div>
 <div class="modal fade" id="exampleModal" align="center">
       <div class="modal-dialog " role="document">
@@ -152,16 +136,25 @@
 
 <div class="container" >
     <div class="collapse width" id="sideNav">
-        <div style="background-color: #f1f1f1; height:100vh;" align = "center">
+        <div style="background-color: #FFF; height:100vh;" align = "center">
             <br>
+            <div id="details">
+                <p class="text-secondary head" align="left"><strong>CLASS CODE</strong></p><hr>
+                <p class="con" align="right">{{ classname.code }}</p>
+                <p class="text-secondary head" align="left"><strong>TEACHER</strong></p><hr>
+                <p class="con" align="right">{{ classname.teacher }}</p>
+                <p class="text-secondary head" align="left"><strong>SUBJECT</strong></p><hr>
+                <p class="con" align="right">{{ classname.subject }}</p>
+            </div>
             <ul class="list-group list-group-flush bg-transparent list-unstyled" style="font-size:.9rem; overflow-x: auto;">
-                <li class="list-group-item dropdown-toggle stud text-light" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
+                <li class="list-group-item dropdown-toggle stud text-secondary" align="left" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
+
                 <div id="demo" class="collapse">
                     {% for student in students %}
-                    <li class="list-group-item" >{{student.username}}</li>
+                    <li class="list-group-item bg-transparent" align="right">{{student.username}}</li>
                     {% endfor %}
                 </div>
-                <li><a class="btn btn-info btn-sm m-2" href="{%url 'unenroll_class' classname.code %}" role="button" id="class_del">Unenroll from class</a></li>
+                <li><a class="btn btn-info btn-sm m-4 text-white" href="{%url 'unenroll_class' classname.code %}" role="button" id="class_del">Unenroll from class</a></li>
             </ul>
         </div>
     </div>

@@ -97,3 +97,16 @@ background-color:#FFF;
     color : #7A87C2;
     border-bottom: 3px solid #7A87C2;
 }
+
+#details{
+    padding:15px;
+    font-size: .9em;
+
+}
+.head{
+    margin-bottom:-10px;
+}
+.con{
+    margin-top: -10px;
+    margin-right:20px;
+}
