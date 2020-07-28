@@ -102,7 +102,7 @@ def joinView(request,class_code):
     students = User.objects.filter(id__in=ids)
     notes = Notes.objects.filter(class_code=class_code)
     assignments = Assignment.objects.filter(class_code=class_code)
-    submit_assignments = SubmitAssignment.objects.filter(assignment__in=assignments)
+    submit_assignments = SubmitAssignment.objects.filter(assignment__in=assignments,user_id=request.user)
     return render(request, 'individual/join.html',{'students':students, 'classname':classname, 'notes':notes,'assignments':assignments,'submitted_assignments':submit_assignments})
 
 @login_required
