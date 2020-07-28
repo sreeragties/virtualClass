@@ -58,9 +58,7 @@ $(window).load(function(){
         <div class="col-7 px-0 ml-auto mr-auto">
             <div class="tab-content">
                 <div id="notes" class="tab-pane fade show active">
-                {% if notes %}
-                    <p class="h4 mb-4 text-secondary text-center">Notes</p>
-                    {% else %}
+                {% if not notes %}
                     <p class="mb-4 text-secondary text-center">There are no notes</p>
                 {% endif %}
                 {% for note in notes %}
@@ -83,9 +81,7 @@ $(window).load(function(){
                 </div>
 
                 <div id="assign" class="tab-pane fade">
-                {% if assignments %}
-                    <p class="h4 mb-4 text-secondary text-center">Assignments</p>
-                    {% else %}
+                {% if not assignments %}
                     <p class="mb-4 text-secondary text-center">There are no assignments</p>
                 {% endif %}
                 {% for assignment in assignments %}
@@ -106,7 +102,7 @@ $(window).load(function(){
                                 <h6 class="card-title">SUBMISSION DATE</h6>
                                 <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
                                 <a href="{%url 'delete_assignment' classname.code assignment.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_assignment">Delete</a>
-                                <a href="#" role="button" class="btn btn-success btn-sm" id="grade_assignment">Grade</a>
+                                <a href="{%url 'grade_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm" id="grade_assignment">Grade</a>
                            </div>
                         </div>
                 {% endfor %}

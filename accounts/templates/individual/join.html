@@ -48,9 +48,7 @@
         <div class="col-7 px-0 ml-auto mr-auto">
             <div class="tab-content">
                 <div id="notes" class="tab-pane fade show active">
-                {% if notes %}
-                    <p class="h4 mb-4 text-secondary text-center">Notes</p>
-                    {% else %}
+                {% if not notes %}
                     <p class="mb-4 text-secondary text-center">There are no notes</p>
                 {% endif %}
                 {% for note in notes %}
@@ -72,9 +70,7 @@
                 </div>
 
                 <div id="assign" class="tab-pane fade">
-                {% if assignments %}
-                    <p class="h4 mb-4 text-secondary text-center">Assignments</p>
-                    {% else %}
+                {% if not assignments %}
                     <p class="mb-4 text-secondary text-center">There are no assignments</p>
                 {% endif %}
                 {% for assignment in assignments %}

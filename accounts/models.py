@@ -54,7 +54,7 @@ class SubmitAssignment(models.Model):
     submitted_file = models.FileField()
     submitted_date = models.DateTimeField(auto_now_add=True)
     marks = models.FloatField(null=True)
-    remarks = models.CharField(max_length=40, blank=True)
+    remarks = models.CharField(max_length=40, blank=True, null=True)
 
     def delete(self, *args, **kwargs):
         self.submitted_file.delete()

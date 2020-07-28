@@ -161,6 +161,11 @@ def unsubmitAssignment(request,assignment_id,submitted_id):
     return redirect('join_page',class_code=class_code)
 
 @login_required
+def gradeAssignment(request,assignment_id):
+    submitted_assignmnets = SubmitAssignment.objects.filter(assignment_id=assignment_id)
+    return render(request,'notes/grade.html',{'submitted_assignments':submitted_assignmnets})
+
+@login_required
 def assignmentDelete(request,class_code,assignment_id):
     Assignment.objects.get(pk=assignment_id).delete()
     return redirect('class_page',class_code=class_code)
