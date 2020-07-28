@@ -10,7 +10,7 @@
 
 {% block nav_content%}
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
-    <button id="openSideNav" data-toggle="collapse" href="#sideNav" >&#9776;</button>
+    <a class="btn" role="button" id="openSideNav" data-toggle="collapse" href="#sideNav" >&#9776;</a>
     <a class="navbar-brand mr-auto" href="{%url 'join_page' classname.code %}" style="margin-left: 10px;"><b>{{ classname.classes }}</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -151,17 +151,19 @@
 </div>
 
 <div class="container" >
-    <div class="collapse width" id="sideNav" style="background-color: #eeeff7; height:100vh;" align = "center">
-        <br>
-        <ul class="list-group list-group-flush bg-transparent list-unstyled" style="font-size:.9rem; overflow-x: auto;">
-            <li class="list-group-item dropdown-toggle stud text-light" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
-            <div id="demo" class="collapse">
-                {% for student in students %}
-                <li class="list-group-item" >{{student.username}}</li>
-                {% endfor %}
-            </div>
-            <li><a class="btn btn-info btn-sm m-2" href="{%url 'unenroll_class' classname.code %}" role="button" id="class_del">Unenroll from class</a></li>
-        </ul>
+    <div class="collapse width" id="sideNav">
+        <div style="background-color: #f1f1f1; height:100vh;" align = "center">
+            <br>
+            <ul class="list-group list-group-flush bg-transparent list-unstyled" style="font-size:.9rem; overflow-x: auto;">
+                <li class="list-group-item dropdown-toggle stud text-light" data-toggle="collapse" role="button" data-target="#demo" ><b>STUDENTS</b></li>
+                <div id="demo" class="collapse">
+                    {% for student in students %}
+                    <li class="list-group-item" >{{student.username}}</li>
+                    {% endfor %}
+                </div>
+                <li><a class="btn btn-info btn-sm m-2" href="{%url 'unenroll_class' classname.code %}" role="button" id="class_del">Unenroll from class</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 <script>

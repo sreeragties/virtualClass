@@ -12,16 +12,6 @@ background-color:#FFF;
     border-radius:100px;
 }
 
-#upload1{
-    font-size:30px;
-    position: fixed;
-    bottom: 20px;
-    right: 100px;
-    height:65px;
-    width:65px;
-    border-radius:100px;
-}
-
 #pagebutton{
         background-color: #FFF;
         border: 2px solid;
@@ -55,26 +45,30 @@ background-color:#FFF;
     transition: .2s;
 }
 
+
 .list-group-item{
     border-left: transparent;
     border-right: transparent;
 }
 
 #openSideNav{
+    text-decoration:none;
     margin-left:10px;
     font-size:20px;
     color: #FFF;
-    background-color:
-    transparent;border: 0;
+    border : 0;
     outline: 0;
+    border-radius: 100px;
 }
+#openSideNav:hover{
+    border:0;
+    background-color:#FFFFFF33;
+    border-radius: 100px;
+}
+
 .collapse.width {
   width: 250px;
   overflow: hidden;
-  -webkit-transition: width 0.35s ease;
-  -moz-transition: width 0.35s ease;
-  -o-transition: width 0.35s ease;
-  transition: width 0.35s ease;
 }
 
 #class_del{
@@ -92,9 +86,8 @@ background-color:#FFF;
 .nav-pills > .nav-item > a{
     text-align: center;
     width :150px;
-    color : #000;
+    color : #6c757d;
 }
-
 
 .nav-pills > .nav-item > .active{
     transform: scale(1.1);

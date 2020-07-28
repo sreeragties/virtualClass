@@ -1,8 +1,8 @@
 <div class="modal-body" align="center">
-    <p id="title" class="h5 mt-3 mb-4 text-secondary text-center">Upload Note</p>
+    <p id="title" class="h5 mt-3 mb-4 text-secondary text-center">Grade</p>
     <form method="POST" enctype="multipart/form-data" action="{%url 'marks_grade' submit_id %}">
         {% csrf_token %}
-        <input type="text" placeholder="Marks" name="marks" required>
+        <input class="uploadinput" type="text" placeholder="Marks" name="marks" required>
         <br><br>
         <textarea placeholder="Remarks" name="remarks"></textarea>
         {% for field in form %}

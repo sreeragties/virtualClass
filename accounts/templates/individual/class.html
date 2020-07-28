@@ -9,7 +9,7 @@
 
 {% block nav_content%}
 <nav class="navbar navbar-expand-md navbar-dark sticky-top">
-    <button id="openSideNav" data-toggle="collapse" href="#sideNav" >&#9776;</button>
+    <a class="btn" role="button" id="openSideNav" data-toggle="collapse" href="#sideNav" >&#9776;</a>
     <a class="navbar-brand mr-auto" href="{%url 'class_page' classname.code %}" style="margin-left: 10px;"><b>{{ classname.classes }}</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -102,7 +102,7 @@ $(window).load(function(){
                                 <h6 class="card-title">SUBMISSION DATE</h6>
                                 <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
                                 <a href="{%url 'delete_assignment' classname.code assignment.id %}" role="button" class="btn btn-danger btn-sm float-right" id="delete_assignment">Delete</a>
-                                <a href="{%url 'grade_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm" id="grade_assignment">Grade</a>
+                                <a href="{%url 'grade_assignment' assignment.id %}" role="button" target="_blank" class="btn btn-success btn-sm" id="grade_assignment">Grade</a>
                            </div>
                         </div>
                 {% endfor %}
@@ -128,8 +128,6 @@ $(window).load(function(){
 
     </div>
 </div>
-
-
 
   <div class="modal fade" id="exampleModal" align="center">
       <div class="modal-dialog " role="document">
@@ -175,20 +173,22 @@ $(window).load(function(){
     </div>
 </div>
 
-<div class="container" >
-    <div class="collapse width " id="sideNav" style="background-color: #eeeff7; height:100vh;" align = "center">
-        <br>
-        <ul class="list-group list-group-flush bg-transparent list-unstyled" style="font-size:.9rem; overflow-x: auto;" >
-            <li class="list-group-item dropdown-toggle stud text-light " data-toggle="collapse" role="button" data-target="#demo"  ><b>STUDENTS</b></li>
-            
-            <div id="demo" class="collapse">
-                {% for student in students %}
-                <li class="list-group-item" >{{student.username}}</li>
-                {% endfor %}
-            </div>
-            
-            <li><a class="btn btn-danger btn-sm m-2 text-light " data-toggle="modal" data-target="#exampleModal2" role="button" id="class_del" text-light><b>Delete Class</b></a>
-        </ul>
+<div class="container">
+    <div class="collapse width" id="sideNav">
+        <div style="background-color: #f1f1f1; height:100vh;" align = "center">
+            <br>
+            <ul class="list-group list-group-flush bg-transparent list-unstyled" style="font-size:.9rem; overflow-x: auto;" >
+                <li class="list-group-item dropdown-toggle stud text-light " data-toggle="collapse" role="button" data-target="#demo"><b>STUDENTS</b></li>
+
+                <div id="demo" class="collapse">
+                    {% for student in students %}
+                    <li class="list-group-item bg-light" >{{student.username}}</li>
+                    {% endfor %}
+                </div>
+
+                <li><a class="btn btn-danger btn-sm m-2 text-light " data-toggle="modal" data-target="#exampleModal2" role="button" id="class_del" text-light><b>Delete Class</b></a>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -203,10 +203,5 @@ $(window).load(function(){
     	$('.collapse').collapse('hide');
     }
     });
-
-    $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
-    });
-
   </script>
 {% endblock %}
