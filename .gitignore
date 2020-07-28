@@ -5,5 +5,5 @@ __pycache__
 myvenv
 /static
 .DS_Store
-/venv/
+/env/
 /.idea/

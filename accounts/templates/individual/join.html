@@ -47,7 +47,7 @@
             <div class="tab-content">
                 <div id="notes" class="tab-pane fade show active">
                 {% if not notes %}
-                    <p class="mb-4 text-secondary text-center">There are no notes</p>
+                    <p class="mt-5 text-secondary text-center">There are no notes</p>
                 {% endif %}
                 {% for note in notes %}
                         <div class="card mb-3 mx-auto" style="max-width:700px;">
@@ -69,7 +69,7 @@
 
                 <div id="assign" class="tab-pane fade">
                 {% if not assignments %}
-                    <p class="mb-4 text-secondary text-center">There are no assignments</p>
+                    <p class="mt-5 text-secondary text-center">There are no assignments</p>
                 {% endif %}
                 {% for assignment in assignments %}
                         <div class="card mb-3 mx-auto" style="max-width:700px;">
@@ -90,7 +90,7 @@
                                 <p class="card-text text-muted ml-5">{{assignment.last_date}}</p>
                                 {% find assignment submitted_assignments as flag %}
                                 {% if flag is None %}
-                                    <a href="{%url 'submit_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm float-right" id="assignment">Submit</a>
+                                    <a href="{%url 'submit_assignment' assignment.id %}" role="button" class="btn btn-success btn-sm float-right submit" >Submit</a>
                                 {% else %}
                                     <hr style="border-top: 3px double #8c8b8b;"/>
                                     <h6 class="card-title">FILE</h6>
@@ -160,10 +160,11 @@
     </div>
 </div>
 <script>
-    $('#assignment').on('click', function(e){
+    $('.submit').on('click', function(e){
       e.preventDefault();
       $('#classModal').modal('show').find('.modal-content').load($(this).attr('href'));
     });
+    
 
     $(document).click(function(e) {
 	if ($(e.target).closest(".container").length === 0) {
